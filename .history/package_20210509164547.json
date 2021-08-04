@@ -1,0 +1,29 @@
+{
+  "name": "scaleswebapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lithium87/ScalesWebApp.git"
+  },
+  "author": "Victoria Vandeva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lithium87/ScalesWebApp/issues"
+  },
+  "homepage": "https://github.com/Lithium87/ScalesWebApp#readme",
+  "dependencies": {
+    "concurrently": "^6.1.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.1",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.0",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.0.2"
+  }
+}
