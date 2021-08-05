@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const sqlite3 = require('sqlite3');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
