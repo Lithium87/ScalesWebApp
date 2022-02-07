@@ -1,0 +1,19 @@
+{
+  "name": "scaleswebapp",
+  "version": "1.0.0",
+  "description": "Application for scales.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lithium87/ScalesWebApp.git"
+  },
+  "author": "Victoria Vandeva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lithium87/ScalesWebApp/issues"
+  },
+  "homepage": "https://github.com/Lithium87/ScalesWebApp#readme"
+}
