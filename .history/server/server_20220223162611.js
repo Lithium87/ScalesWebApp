@@ -7,7 +7,6 @@ const Zvena = require ('./models/Zvena');
 const Measurement = require ('./models/MeasurementModel');
 const Scale = require ('./models/ScaleModel');
 const Material = require ('./models/MaterialModel');
-const User = require ('./models/UserModel');
 const {notFound, errorHandler} = require ('./middleware/errorMiddleware');
 
 dotenv.config ();
@@ -29,12 +28,8 @@ Measurement.belongsTo (Scale, {foreignKeyConstraint: 'scaleId'});
 Scale.hasMany (Measurement, {foreignKeyConstraint: 'scaleId'});
 Measurement.belongsTo (Material, {foreignKeyConstraint: 'materialId'});
 Material.hasMany (Measurement, {foreignKeyConstraint: 'materialId'});
-User.belongsTo (Operator, {foreignKeyConstraint: 'operatorId'});
-Operator.hasOne (User, {foreignKeyConstraint: 'operatorId'});
-User.belongsTo (Zvena, {foreignKeyConstraint: 'zvenoId'});
-Zvena.hasMany (User, {foreignKeyConstraint: 'zvenoId'});
 
-sequelize.sync ({force: true}).then (() => console.log ('DB is ready'));
+sequelize.sync ().then (() => console.log ('DB is ready'));
 
 const port = process.env.PORT || 5000;
 
