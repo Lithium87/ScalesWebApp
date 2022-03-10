@@ -22,8 +22,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use (express.json ());
 
-app.use ('/api/scales', scalesRoutes);
-
 app.use (notFound);
 app.use (errorHandler);
 
@@ -38,7 +36,7 @@ Operator.hasOne (User, {foreignKeyConstraint: 'operatorId'});
 User.belongsTo (Zvena, {foreignKeyConstraint: 'zvenoId'});
 Zvena.hasMany (User, {foreignKeyConstraint: 'zvenoId'});
 
-sequelize.sync ().then (() => console.log ('DB is ready'.cyan.bold));
+//sequelize.sync ().then (() => console.log ('DB is ready'.cyan.bold));
 
 const port = process.env.PORT || 5000;
 

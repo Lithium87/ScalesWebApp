@@ -22,8 +22,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use (express.json ());
 
-app.use ('/api/scales', scalesRoutes);
-
 app.use (notFound);
 app.use (errorHandler);
 
