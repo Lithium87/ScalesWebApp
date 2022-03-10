@@ -1,0 +1,26 @@
+{
+    "development": {
+        "username": null,
+        "password": null,
+        "database": "web-scales",
+        "host": "127.0.0.1",
+        "dialect": "sqlite",
+        "storage": "./server/WebScales.sqlite"
+    },
+    "test": {
+        "username": null,
+        "password": null,
+        "database": "web-scales",
+        "host": "127.0.0.1",
+        "dialect": "sqlite",
+        "storage": "./server/WebScales.sqlite"
+    },
+    "production": {
+        "username": null,
+        "password": null,
+        "database": "web-scales",
+        "host": "127.0.0.1",
+        "dialect": "sqlite",
+        "storage": "./server/WebScales.sqlite"
+    }
+}

@@ -1,0 +1,15 @@
+const {Sequelize} = require ('sequelize');
+const dotenv = require ('dotenv');
+const colors = require ('colors');
+const materials = require ('./data/materials.json');
+const measurements = require ('./data/measurements.json');
+const operators = require ('./data/operators.json');
+const scales = require ('./data/scales.json');
+const users = require ('./data/users.json');
+const zvena = require ('./data/zvena.json');
+const Material = require ('./models/MaterialModel');
+const Measurement = require ('./models/MeasurementModel');
+const Operator = require ('./models/OperatorModel');
+const Scale = require ('./models/ScaleModel');
+const User = require ('./models/UserModel');
+const Zvena = require ('./models/Zvena');
