@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Operator.belongsTo (models.Zvena, {
         foreignKey: 'zvenoId',
-        constraint: false,
+        references: {
+          table: 'Operators',
+          field: 'id',
+        },
       });
       Zvena.hasMany (models.Operator);
     }

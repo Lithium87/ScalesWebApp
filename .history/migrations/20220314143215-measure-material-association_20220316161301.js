@@ -14,6 +14,9 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await removeConstraint ('Measurements', 'measurement_material_fk');
+    await queryInterface.removeConstraint (
+      'Measurements',
+      'measurement_material_fk'
+    );
   },
 };

@@ -14,7 +14,10 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await removeConstraint ('Measurements', 'measurement_scale_fk');
+    await queryInterface.removeConstraint (
+      'Measurements',
+      'measurement_scale_fk'
+    );
     /**
      * Add reverting commands here.
      *

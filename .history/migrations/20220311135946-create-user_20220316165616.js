@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable ('Operators', {
+    await queryInterface.createTable ('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,18 +11,17 @@ module.exports = {
       zvenoId: {
         type: Sequelize.INTEGER,
       },
-      operatorName: {
-        type: Sequelize.STRING,
-        validate: {
-          max: 255,
-        },
-      },
-      operatorCardNumber: {
-        type: Sequelize.INTEGER,
-        unique: true,
+      role: {
+        type: Sequelize.ENUM,
+        values: ['admin', 'technologist', 'user'],
         allowNull: false,
-        defaultValue: 0,
+        defaultValue: 'user',
       },
+      username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      operatorName: Sequelize.STRING,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -35,6 +34,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable ('Operators');
+    await queryInterface.dropTable ('Users');
   },
 };

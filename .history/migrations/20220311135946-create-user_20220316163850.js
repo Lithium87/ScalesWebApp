@@ -12,7 +12,8 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       role: {
-        type: Sequelize.TEXT,
+        type: Sequelize.ENUM,
+        values: ['admin', 'technologist', 'user'],
         allowNull: false,
         defaultValue: 'user',
       },
@@ -30,9 +31,20 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addConstraint ('Users', {
+      fields: ['zvenoId'],
+      type: 'foreign key',
+      name: 'user_zvena_fk',
+      references: {
+        table: 'Users',
+        field: 'id',
+      },
+    });
   },
 
   async down (queryInterface, Sequelize) {
     await queryInterface.dropTable ('Users');
+    await queryInterface.removeConstraint ('Users', 'user_zvena_fk');
   },
 };

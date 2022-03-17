@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'materialId',
         constraints: false,
       });
-      Material.hasMany (models.Measurement);
-
-      Measurement.belongsTo (models.Scale, {
-        foreignKey: 'scaleId',
+      Material.hasMany (models.Measurement, {
+        foreignKey: 'materialId',
         constraints: false,
       });
-      Scale.hasMany (models.Measurement);
+
+      Measurement.belongsTo (models.Scale, {foreignKey: 'scaleId'});
+      Scale.hasMany (models.Measurement, {foreignKey: 'scaleId'});
     }
   }
   Measurement.init (

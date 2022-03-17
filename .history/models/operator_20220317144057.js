@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'zvenoId',
         constraint: false,
       });
-      Zvena.hasMany (models.Operator);
+      Zvena.hasMany (models.Operator, {foreignKey: 'zvenoId'});
     }
   }
   Operator.init (

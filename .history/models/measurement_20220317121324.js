@@ -11,13 +11,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Measurement.belongsTo (models.Material, {
         foreignKey: 'materialId',
-        constraints: false,
+        references: {
+          table: 'Materials',
+          field: 'id',
+        },
       });
       Material.hasMany (models.Measurement);
 
       Measurement.belongsTo (models.Scale, {
         foreignKey: 'scaleId',
-        constraints: false,
+        references: {
+          table: 'Scales',
+          field: 'id',
+        },
       });
       Scale.hasMany (models.Measurement);
     }

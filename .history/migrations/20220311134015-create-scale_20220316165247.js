@@ -30,21 +30,21 @@ module.exports = {
       },
     });
 
-    // await queryInterface.addConstraint ('Measurements', {
-    //   fields: ['scaleId'],
-    //   type: 'foreign key',
-    //   name: 'measurement_scale_fk',
-    //   references: {
-    //     table: 'Scales',
-    //     field: 'id',
-    //   },
-    // });
+    await queryInterface.addConstraint ('Measurements', {
+      fields: ['scaleId'],
+      type: 'foreign key',
+      name: 'measurement_scale_fk',
+      references: {
+        table: 'Scales',
+        field: 'id',
+      },
+    });
   },
   async down (queryInterface, Sequelize) {
     await queryInterface.dropTable ('Scales');
-    // await queryInterface.removeConstraint (
-    //   'Measurements',
-    //   'measurement_scale_fk'
-    // );
+    await queryInterface.removeConstraint (
+      'Measurements',
+      'measurement_scale_fk'
+    );
   },
 };
