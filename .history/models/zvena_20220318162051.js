@@ -1,7 +1,7 @@
 'use strict';
 const {Model} = require ('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Operator extends Model {
+  class Zvena extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,35 +9,41 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      models.Operator.belongsTo (models.Zvena, {
+      operator.belongsTo (models.operator, {
         foreignKey: 'zvenoId',
-        constraint: false,
+        constraints: false,
       });
-      models.Zvena.hasMany (models.Operator);
+      zvena.hasMany (models.operator);
+
+      user.belongsTo (models.zvena, {
+        foreignKey: 'zvenoId',
+        constraints: false,
+      });
+      zvena.hasMany (models.user);
     }
   }
-  Operator.init (
+  Zvena.init (
     {
-      operatorName: {
+      zvenoName: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           max: 255,
         },
       },
-      operatorCardNumber: {
-        type: DataTypes.INTEGER,
-        unique: true,
+      zvenoPassword: {
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 0,
-      },
-      zvenoId: {
-        type: DataTypes.INTEGER,
+        validate: {
+          max: 8,
+        },
       },
     },
     {
       sequelize,
-      modelName: 'Operator',
+      modelName: 'Zvena',
+      freezeTableName: true,
     }
   );
-  return Operator;
+  return Zvena;
 };

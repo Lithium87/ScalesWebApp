@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      models.Operator.belongsTo (models.Zvena, {
+      operator.belongsTo (models.zvena, {
         foreignKey: 'zvenoId',
         constraint: false,
       });
-      models.Zvena.hasMany (models.Operator);
+      zvena.hasMany (models.operator);
     }
   }
   Operator.init (

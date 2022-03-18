@@ -1,5 +1,5 @@
 const express = require ('express');
-const db = require ('../models');
+const db = require ('../../models');
 const dotenv = require ('dotenv');
 const colors = require ('colors');
 const morgan = require ('morgan');

@@ -9,17 +9,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      models.Measurement.belongsTo (models.Material, {
+      measurement.belongsTo (models.material, {
         foreignKey: 'materialId',
         constraints: false,
       });
-      models.Material.hasMany (models.Measurement);
+      material.hasMany (models.measurement);
 
-      models.Measurement.belongsTo (models.Scale, {
+      measurement.belongsTo (models.scale, {
         foreignKey: 'scaleId',
         constraints: false,
       });
-      models.Scale.hasMany (models.Measurement);
+      scale.hasMany (models.measurement);
     }
   }
   Measurement.init (

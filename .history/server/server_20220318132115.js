@@ -1,8 +1,8 @@
 const express = require ('express');
-const db = require ('../models');
 const dotenv = require ('dotenv');
 const colors = require ('colors');
 const morgan = require ('morgan');
+const sqlite3 = require ('sqlite3');
 const scaleRoutes = require ('./routes/scaleRoutes');
 const {notFound, errorHandler} = require ('./middleware/errorMiddleware');
 
@@ -16,14 +16,10 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use (express.json ());
 
-db.sequelize.authenticate ().then (
-  function (err) {
-    console.log ('Connection has been established successfully.');
-  },
-  function (err) {
-    console.log ('Unable to connect to the database:', err);
-  }
-);
+let db = new sqlite3.Database ('./WebScales.sqlite', err => {
+  if (err) console.error (err.message);
+  console.log ('Connected to WebScales DB!'.cyan.bold);
+});
 
 app.use ('/api/scales', scaleRoutes);
 
