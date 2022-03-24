@@ -1,7 +1,11 @@
 const express = require ('express');
+const cors = require ('cors');
+const db = require ('../models');
 const dotenv = require ('dotenv');
 const colors = require ('colors');
 const morgan = require ('morgan');
+const scaleRoutes = require ('./routes/scaleRoutes');
+//const measurementRoutes = require ('./routes/measurementRoutes');
 const {notFound, errorHandler} = require ('./middleware/errorMiddleware');
 
 dotenv.config ();
@@ -12,7 +16,21 @@ if (process.env.NODE_ENV === 'development') {
   app.use (morgan ('dev'));
 }
 
+app.use (cors ({credentials: true}));
+
 app.use (express.json ());
+
+db.sequelize.authenticate ().then (
+  function (err) {
+    console.log ('Connection has been established successfully.');
+  },
+  function (err) {
+    console.log ('Unable to connect to the database:', err);
+  }
+);
+
+app.use ('/api/scales', scaleRoutes);
+//app.use ('/api/measurements', measurementRoutes);
 
 app.use (notFound);
 app.use (errorHandler);
