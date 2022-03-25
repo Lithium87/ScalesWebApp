@@ -2,7 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {listScalesReducer} from './reducers/scalesReducer';
-import {measurementsPerScaleReducer} from './reducers/measurementsReducer';
+import {measurementsPerScaleReducer} from './reducers/measurementReducers';
 
 const rootReducer = combineReducers ({
   scalesList: listScalesReducer,
