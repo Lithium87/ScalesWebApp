@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, {useState, useEffect} from 'react';
 import {Button, Form} from 'react-bootstrap';
 import FormContainer from './FormContainer';
 
@@ -90,9 +90,7 @@ const SearchForm = ({
           />
         </div>
 
-        <Button type="submit" className="btn-block" onClick={handleFilters}>
-          Филтрирай
-        </Button>
+        <Button type="submit" className="btn-block" onClick={handleFilters} />
       </Form>
     </FormContainer>
   );

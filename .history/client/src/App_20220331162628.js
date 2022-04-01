@@ -5,14 +5,14 @@ import Layout from './components/Layout';
 import HomeScreen from './screens/HomeScreen';
 import ScaleInfoScreen from './screens/ScaleInfoScreen';
 
-const App = () => {
+const App = ({match}) => {
   return (
     <Router>
       <Layout>
         <main className="py-3">
           <Container>
             <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/scale/:id" component={ScaleInfoScreen} />
+            <Route exact path="/match.params.id" component={ScaleInfoScreen} />
           </Container>
         </main>
       </Layout>

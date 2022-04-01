@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, {useState, useEffect} from 'react';
 import {Button, Form} from 'react-bootstrap';
 import FormContainer from './FormContainer';
 
@@ -14,7 +14,6 @@ const SearchForm = ({
   checkedOperators,
   listOperators,
   handleChangeOperators,
-  handleFilters,
 }) => {
   return (
     <FormContainer>
@@ -89,10 +88,6 @@ const SearchForm = ({
             label="За всички оператори"
           />
         </div>
-
-        <Button type="submit" className="btn-block" onClick={handleFilters}>
-          Филтрирай
-        </Button>
       </Form>
     </FormContainer>
   );

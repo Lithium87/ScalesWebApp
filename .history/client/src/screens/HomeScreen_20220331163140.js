@@ -27,7 +27,7 @@ const HomeScreen = ({match}) => {
         : <Row>
             {scales.map (scale => (
               <Col key={scale.id} sm={12} md={6} lg={4} xl={3}>
-                <Link to={`/scale/${scale.id}`}>
+                <Link to={`/scales/scale/${match.params.id}`}>
                   <SingleScale />
                 </Link>
               </Col>

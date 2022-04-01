@@ -12,7 +12,7 @@ const App = () => {
         <main className="py-3">
           <Container>
             <Route exact path="/" component={HomeScreen} />
-            <Route exact path="/scale/:id" component={ScaleInfoScreen} />
+            <Route exact path="/measurements/:id" component={ScaleInfoScreen} />
           </Container>
         </main>
       </Layout>

@@ -6,7 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 
 const ScaleInfoScreen = () => {
-  return <div>ScaleInfoScreen</div>;
+  return <div>ScaleInfoScreen</div>; // SearchBy, OrderListScreen from the other
 };
 
 export default ScaleInfoScreen;

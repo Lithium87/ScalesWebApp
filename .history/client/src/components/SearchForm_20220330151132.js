@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, {useState, useEffect} from 'react';
 import {Button, Form} from 'react-bootstrap';
 import FormContainer from './FormContainer';
 
@@ -8,13 +8,6 @@ const SearchForm = ({
   changeMaterialValue,
   checkedMaterial,
   measurementsPerScale,
-  handleChangeMaterials,
-  operatorValue,
-  changeOperatorValue,
-  checkedOperators,
-  listOperators,
-  handleChangeOperators,
-  handleFilters,
 }) => {
   return (
     <FormContainer>
@@ -58,41 +51,9 @@ const SearchForm = ({
           <Form.Check
             type="checkbox"
             id="material"
-            onChange={handleChangeMaterials}
             label="За всички материали"
           />
         </div>
-
-        <div>
-          <Form.Label htmlFor="operator">Оператор: </Form.Label>
-          <Form.Control
-            type="select"
-            id="operator"
-            defaultValue={operatorValue}
-            onChange={changeOperatorValue}
-            style={{width: '200px', margin: '5px'}}
-            disabled={checkedOperators}
-          >
-            {listOperators
-              ? listOperators.map (operator => (
-                  <option key={operator.id} value={operator.operatorName}>
-                    {operator.operatorName}
-                  </option>
-                ))
-              : null}
-          </Form.Control>
-
-          <Form.Check
-            type="checkbox"
-            id="operator"
-            onChange={handleChangeOperators}
-            label="За всички оператори"
-          />
-        </div>
-
-        <Button type="submit" className="btn-block" onClick={handleFilters}>
-          Филтрирай
-        </Button>
       </Form>
     </FormContainer>
   );

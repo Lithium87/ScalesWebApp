@@ -5,11 +5,11 @@ import {
   MEASUREMENTS_PER_SCALE_FAIL,
 } from '../constants/measurementsConstants';
 
-export const listScales = scaleId => async dispatch => {
+export const listScales = match => async dispatch => {
   try {
     dispatch ({type: MEASUREMENTS_PER_SCALE_REQUEST});
     const {data} = await axios.get (
-      `http://localhost:5000/api/measurements/${scaleId}`
+      `http://localhost:5000/api/measurements/${match.params.id}`
     );
 
     dispatch ({

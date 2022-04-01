@@ -9,7 +9,8 @@ export const listScales = scaleId => async dispatch => {
   try {
     dispatch ({type: MEASUREMENTS_PER_SCALE_REQUEST});
     const {data} = await axios.get (
-      `http://localhost:5000/api/measurements/${scaleId}`
+      `http://localhost:5000/api/measurements/${scaleId}`,
+      scaleId
     );
 
     dispatch ({

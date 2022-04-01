@@ -13,7 +13,7 @@ exports.getAllScales = asyncHandler (async (req, res) => {
 });
 
 exports.getScaleById = asyncHandler (async (req, res) => {
-  const scale = await db.Scale.findOne ({where: {id: req.params.id}});
+  const scale = await db.Scale.findById ();
 
   if (scale) {
     res.json (scale);
