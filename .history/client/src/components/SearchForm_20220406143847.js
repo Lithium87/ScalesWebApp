@@ -1,16 +1,15 @@
-﻿import React, {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+﻿import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import FormContainer from './FormContainer';
 import {listOperators} from '../actions/operatorActions';
-import {listMeasurementsPerScale} from '../actions/measurementsActions';
 
 const SearchForm = ({
   submitHandler,
   materialValue,
   changeMaterialValue,
   checkedMaterial,
+  measurementsPerScale,
   handleChangeMaterials,
   operatorValue,
   changeOperatorValue,
@@ -18,26 +17,16 @@ const SearchForm = ({
   handleChangeOperators,
   handleFilters,
 }) => {
-  const {scaleId} = useParams ();
-  console.log (scaleId);
-
   const dispatch = useDispatch ();
 
   const operatorsList = useSelector (state => state.operatorsList);
   const {operators} = operatorsList;
 
-  const measurementsPerScale = useSelector (
-    state => state.measurementsPerScale
-  );
-  const {scaleMeasurements} = measurementsPerScale;
-
   useEffect (
     () => {
-      dispatch (listMeasurementsPerScale (scaleId));
-
       dispatch (listOperators ());
     },
-    [dispatch, scaleId]
+    [dispatch]
   );
 
   return (
@@ -70,8 +59,8 @@ const SearchForm = ({
             style={{width: '200px', margin: '5px'}}
             disabled={checkedMaterial ? 'disabled' : ''}
           >
-            {scaleMeasurements
-              ? scaleMeasurements.map (mps => (
+            {measurementsPerScale
+              ? measurementsPerScale.map (mps => (
                   <option key={mps.id} value={mps.materialName}>
                     {mps.materialName}
                   </option>
@@ -95,10 +84,10 @@ const SearchForm = ({
             defaultValue={operatorValue}
             onChange={changeOperatorValue}
             style={{width: '200px', margin: '5px'}}
-            disabled={checkedOperators ? 'disabled' : ''}
+            disabled={checkedOperators}
           >
-            {operators
-              ? operators.map (operator => (
+            {listOperators
+              ? listOperators.map (operator => (
                   <option key={operator.id} value={operator.operatorName}>
                     {operator.operatorName}
                   </option>

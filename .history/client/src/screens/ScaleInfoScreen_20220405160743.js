@@ -4,9 +4,15 @@ import {Button} from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import SearchForm from '../components/SearchForm';
+import {listOperators} from '../actions/operatorActions';
 import {listMeasurementsPerScale} from '../actions/measurementsActions';
 
 const ScaleInfoScreen = () => {
+  const dispatch = useDispatch ();
+
+  const operatorsList = useSelector (state => state.operatorsList);
+  const {loading, error, operator} = operatorsList;
+
   const [materialValue, setMaterialValue] = useState ('');
   const [operatorValue, setOperatorValue] = useState ('');
   const [checkedMaterial, setCheckedMaterial] = useState (false);
@@ -17,6 +23,13 @@ const ScaleInfoScreen = () => {
     material: '',
     operator: '',
   });
+
+  useEffect (
+    () => {
+      dispatch (listOperators ());
+    },
+    [dispatch]
+  );
 
   const handleFilters = () => {};
 

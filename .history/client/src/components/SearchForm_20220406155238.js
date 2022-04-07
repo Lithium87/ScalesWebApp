@@ -19,7 +19,6 @@ const SearchForm = ({
   handleFilters,
 }) => {
   const {scaleId} = useParams ();
-  console.log (scaleId);
 
   const dispatch = useDispatch ();
 
@@ -33,7 +32,9 @@ const SearchForm = ({
 
   useEffect (
     () => {
-      dispatch (listMeasurementsPerScale (scaleId));
+      if (scaleId) {
+        dispatch (listMeasurementsPerScale (scaleId));
+      }
 
       dispatch (listOperators ());
     },

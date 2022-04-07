@@ -14,7 +14,7 @@ export const listMeasurementsPerScale = scaleId => async dispatch => {
 
     dispatch ({
       type: MEASUREMENTS_PER_SCALE_SUCCESS,
-      payload: data,
+      payload: data.json (),
     });
   } catch (error) {
     dispatch ({

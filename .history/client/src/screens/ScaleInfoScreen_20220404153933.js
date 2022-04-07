@@ -4,7 +4,6 @@ import {Button} from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import SearchForm from '../components/SearchForm';
-import {listMeasurementsPerScale} from '../actions/measurementsActions';
 
 const ScaleInfoScreen = () => {
   const [materialValue, setMaterialValue] = useState ('');

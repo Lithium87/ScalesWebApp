@@ -19,7 +19,6 @@ const SearchForm = ({
   handleFilters,
 }) => {
   const {scaleId} = useParams ();
-  console.log (scaleId);
 
   const dispatch = useDispatch ();
 

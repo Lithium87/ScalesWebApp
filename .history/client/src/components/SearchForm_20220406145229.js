@@ -1,5 +1,4 @@
 ﻿import React, {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import FormContainer from './FormContainer';
@@ -17,10 +16,8 @@ const SearchForm = ({
   checkedOperators,
   handleChangeOperators,
   handleFilters,
+  match,
 }) => {
-  const {scaleId} = useParams ();
-  console.log (scaleId);
-
   const dispatch = useDispatch ();
 
   const operatorsList = useSelector (state => state.operatorsList);
@@ -33,11 +30,10 @@ const SearchForm = ({
 
   useEffect (
     () => {
-      dispatch (listMeasurementsPerScale (scaleId));
-
-      dispatch (listOperators ());
+      dispatch (listMeasurementsPerScale ());
+      dispatch (listOperators (match.params.id));
     },
-    [dispatch, scaleId]
+    [dispatch, match.params.id]
   );
 
   return (
@@ -95,7 +91,7 @@ const SearchForm = ({
             defaultValue={operatorValue}
             onChange={changeOperatorValue}
             style={{width: '200px', margin: '5px'}}
-            disabled={checkedOperators ? 'disabled' : ''}
+            disabled={checkedOperators}
           >
             {operators
               ? operators.map (operator => (

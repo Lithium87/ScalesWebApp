@@ -18,8 +18,7 @@ const SearchForm = ({
   handleChangeOperators,
   handleFilters,
 }) => {
-  const {scaleId} = useParams ();
-  console.log (scaleId);
+  const {id} = useParams ();
 
   const dispatch = useDispatch ();
 
@@ -33,11 +32,13 @@ const SearchForm = ({
 
   useEffect (
     () => {
-      dispatch (listMeasurementsPerScale (scaleId));
+      if (id) {
+        dispatch (listMeasurementsPerScale (id));
+      }
 
       dispatch (listOperators ());
     },
-    [dispatch, scaleId]
+    [dispatch]
   );
 
   return (
@@ -95,7 +96,7 @@ const SearchForm = ({
             defaultValue={operatorValue}
             onChange={changeOperatorValue}
             style={{width: '200px', margin: '5px'}}
-            disabled={checkedOperators ? 'disabled' : ''}
+            disabled={checkedOperators}
           >
             {operators
               ? operators.map (operator => (

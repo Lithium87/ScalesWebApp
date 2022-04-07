@@ -8,9 +8,7 @@ import {
 export const listMeasurementsPerScale = scaleId => async dispatch => {
   try {
     dispatch ({type: MEASUREMENTS_PER_SCALE_REQUEST});
-    const {data} = await axios.get (
-      `http://localhost:5000/api/measurements/${scaleId}`
-    );
+    const {data} = await axios.get (`http://localhost:5000/api/measurements/`);
 
     dispatch ({
       type: MEASUREMENTS_PER_SCALE_SUCCESS,

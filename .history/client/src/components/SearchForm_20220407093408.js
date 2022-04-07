@@ -17,9 +17,11 @@ const SearchForm = ({
   checkedOperators,
   handleChangeOperators,
   handleFilters,
+  match,
 }) => {
-  const {scaleId} = useParams ();
-  console.log (scaleId);
+  // const {scaleId} = useParams ();
+  // console.log (scaleId);
+  const {scaleId} = match.params;
 
   const dispatch = useDispatch ();
 

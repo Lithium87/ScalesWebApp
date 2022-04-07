@@ -17,7 +17,7 @@ export const measurementsPerScaleReducer = (
     case MEASUREMENTS_PER_SCALE_SUCCESS:
       return {
         loading: false,
-        measurementsPerScale: action.payload,
+        measurementsPerScale: action.payload.measurementsPerScale,
       };
     case MEASUREMENTS_PER_SCALE_FAIL:
       return {

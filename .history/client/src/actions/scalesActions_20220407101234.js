@@ -26,3 +26,24 @@ export const listScales = () => async dispatch => {
     });
   }
 };
+
+// export const getScaleById = scaleId => async dispatch => {
+//   try {
+//     dispatch ({type: GET_SCALE_BY_ID_REQUEST});
+//     const {data} = await axios.get (
+//       `http://localhost:5000/api/scales/scale/${scaleId}`
+//     );
+
+//     dispatch ({
+//       type: GET_SCALE_BY_ID_SUCCESS,
+//       payload: data,
+//     });
+//   } catch (error) {
+//     dispatch ({
+//       type: GET_SCALE_BY_ID_FAIL,
+//       payload: error.response && error.response.data.message
+//         ? error.response.data.message
+//         : error.message,
+//     });
+//   }
+// };

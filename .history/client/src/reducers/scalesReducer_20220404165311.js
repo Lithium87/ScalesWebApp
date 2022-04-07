@@ -28,3 +28,25 @@ export const listScalesReducer = (state = {scales: []}, action) => {
       return state;
   }
 };
+
+export const getScaleByIdReducer = (state = {scale: {}}, action) => {
+  switch (action.type) {
+    case GET_SCALE_BY_ID_REQUEST:
+      return {
+        loading: true,
+        scale: {},
+      };
+    case GET_SCALE_BY_ID_SUCCESS:
+      return {
+        loading: false,
+        scale: action.payload,
+      };
+    case GET_SCALE_BY_ID_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
