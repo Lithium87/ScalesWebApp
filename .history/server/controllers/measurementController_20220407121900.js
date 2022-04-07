@@ -2,7 +2,7 @@ const asyncHandler = require ('express-async-handler');
 const db = require ('../../models');
 
 exports.getAllMeasurements = asyncHandler (async (req, res) => {
-  const measurements = await db.Measurement.findAll ();
+  const measurements = await db.Measurement ();
 
   if (measurements) {
     res.json (measurements);
