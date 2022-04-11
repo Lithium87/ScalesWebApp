@@ -8,24 +8,7 @@ import {
   ALL_MEASUREMENTS_FAIL,
 } from '../constants/measurementsConstants';
 
-export const listAllMeasurements = () => async dispatch => {
-  try {
-    dispatch ({type: ALL_MEASUREMENTS_REQUEST});
-    const {data} = await axios.get ('http://localhost:5000/api/measurements');
-
-    dispatch ({
-      type: ALL_MEASUREMENTS_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch ({
-      type: ALL_MEASUREMENTS_FAIL,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
-    });
-  }
-};
+export const listAllMeasurements = () => async dispatch => {};
 
 export const listMeasurementsPerScale = scaleId => async dispatch => {
   try {

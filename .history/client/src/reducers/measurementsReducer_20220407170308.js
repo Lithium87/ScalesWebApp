@@ -10,27 +10,7 @@ import {
 export const allMeasurementsReducer = (
   state = {allMeasurements: []},
   action
-) => {
-  switch (action.type) {
-    case ALL_MEASUREMENTS_REQUEST:
-      return {
-        loading: true,
-        allMeasurements: [],
-      };
-    case ALL_MEASUREMENTS_SUCCESS:
-      return {
-        loading: false,
-        allMeasurements: action.payload,
-      };
-    case ALL_MEASUREMENTS_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+) => {};
 
 export const measurementsPerScaleReducer = (
   state = {measurementsPerScale: []},
