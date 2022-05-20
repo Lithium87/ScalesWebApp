@@ -1,0 +1,12 @@
+.container {
+    width: 85vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    .main {
+        display: flex;
+        flex-direction: row;
+        align-items: right;
+        column-gap: 50px;
+    }
+}

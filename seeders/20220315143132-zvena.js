@@ -6,14 +6,10 @@ module.exports = {
       {
         zvenoName: 'Пастиране',
         zvenoPassword: 'zveno1',
-        createdAt: new Date (),
-        updatedAt: new Date (),
       },
       {
         zvenoName: 'Леярен',
         zvenoPassword: 'zveno2',
-        createdAt: new Date (),
-        updatedAt: new Date (),
       },
     ]);
   },
