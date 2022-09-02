@@ -1,0 +1,12 @@
+.form-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: baseline;
+    gap: 10px 10px;
+    width: 100%;
+    .form-item {
+        flex-grow: 1;
+        max-height: 25px;
+    }
+}
