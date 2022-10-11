@@ -62,14 +62,6 @@ const ScaleInfoScreen = () => {
       [event.target.id]: event.target.value,
     }));
 
-    if (measurements) {
-      dispatch (listFilteredMeasurementsPerScale (id, filters));
-      <MeasurementPerScaleTable
-        measurements={filteredMeasurementsPerScale}
-        changeTimeFormat={changeTimeFormat}
-      />;
-    }
-
     console.log ('FILTERS: ', filters);
     console.log ('TYPE OF FILTERS: ', typeof filters);
     console.log ('-----------------------------');

@@ -58,7 +58,6 @@ export const listFilteredMeasurementsPerScale = (
   const reqData = {
     ...filters,
   };
-
   try {
     dispatch ({type: GET_FILTERED_DATA_REQUEST});
     const {data} = await axios.post (

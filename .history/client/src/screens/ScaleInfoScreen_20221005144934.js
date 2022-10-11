@@ -39,9 +39,10 @@ const ScaleInfoScreen = () => {
     measurementsPerScale: measurements,
   } = measurementsPerScale;
 
-  const filteredMeasurementsPerScale = useSelector (
-    state => state.filteredMeasurementsPerScale
+  const listFilteredMeasurementsPerScale = useSelector (
+    state => state.listFilteredMeasurementsPerScale
   );
+  const {filteredMeasurements} = listFilteredMeasurementsPerScale;
 
   const operatorsList = useSelector (state => state.operatorsList);
   const {operators} = operatorsList;
@@ -62,25 +63,10 @@ const ScaleInfoScreen = () => {
       [event.target.id]: event.target.value,
     }));
 
-    if (measurements) {
-      dispatch (listFilteredMeasurementsPerScale (id, filters));
-      <MeasurementPerScaleTable
-        measurements={filteredMeasurementsPerScale}
-        changeTimeFormat={changeTimeFormat}
-      />;
-    }
-
-    console.log ('FILTERS: ', filters);
-    console.log ('TYPE OF FILTERS: ', typeof filters);
-    console.log ('-----------------------------');
-    console.log ('MEASUREMENTS: ', measurements);
-    console.log ('TYPES OF MEASUREMENT: ', typeof measurements);
-    console.log ('-----------------------------');
-    console.log ('FILTERED MEASUREMENTS: ', filteredMeasurementsPerScale);
-    console.log (
-      'TYPE OF FILTERED MEASUREMENTS: ',
-      typeof filteredMeasurementsPerScale
-    );
+    console.log (filters);
+    console.log (typeof filters);
+    console.log (measurements);
+    console.log (filteredMeasurements);
   };
 
   const handleChangeMaterials = e => {

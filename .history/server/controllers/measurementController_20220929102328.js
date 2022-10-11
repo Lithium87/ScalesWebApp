@@ -41,7 +41,6 @@ exports.applyFilters = asyncHandler (async (req, res) => {
   };
 
   console.log (filters);
-  console.log (typeof filters);
 
   const filteredMeasurementsPerScale = await db.Measurement.findAll ({
     attributes: [

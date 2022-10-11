@@ -40,9 +40,6 @@ exports.applyFilters = asyncHandler (async (req, res) => {
     operator,
   };
 
-  console.log (filters);
-  console.log (typeof filters);
-
   const filteredMeasurementsPerScale = await db.Measurement.findAll ({
     attributes: [
       'materialType',

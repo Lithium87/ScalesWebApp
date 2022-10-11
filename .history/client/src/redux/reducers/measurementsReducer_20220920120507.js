@@ -59,28 +59,3 @@ export const measurementsPerScaleReducer = (
       return state;
   }
 };
-
-export const filteredMeasurementsPerScaleReducer = (
-  state = {filteredMeasurementsPerScale: []},
-  action
-) => {
-  switch (action.type) {
-    case GET_FILTERED_DATA_REQUEST:
-      return {
-        loading: true,
-        filteredMeasurementsPerScale: [],
-      };
-    case GET_FILTERED_DATA_SUCCESS:
-      return {
-        loading: false,
-        filteredMeasurementsPerScale: action.payload,
-      };
-    case GET_FILTERED_DATA_FAIL:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};

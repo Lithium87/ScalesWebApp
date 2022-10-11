@@ -53,12 +53,11 @@ export const listMeasurementsPerScale = id => async dispatch => {
 
 export const listFilteredMeasurementsPerScale = (
   id,
-  filters = {}
+  filters = []
 ) => async dispatch => {
   const reqData = {
     ...filters,
   };
-
   try {
     dispatch ({type: GET_FILTERED_DATA_REQUEST});
     const {data} = await axios.post (

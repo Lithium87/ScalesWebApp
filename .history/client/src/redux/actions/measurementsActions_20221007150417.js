@@ -58,7 +58,6 @@ export const listFilteredMeasurementsPerScale = (
   const reqData = {
     ...filters,
   };
-
   try {
     dispatch ({type: GET_FILTERED_DATA_REQUEST});
     const {data} = await axios.post (
@@ -66,7 +65,7 @@ export const listFilteredMeasurementsPerScale = (
       reqData
     );
 
-    dispatch ({type: GET_FILTERED_DATA_SUCCESS, payload: data});
+    dispatch ({type: GET_FILTERED_DATA_SUCCESS, payload: data.measurements});
   } catch (error) {
     dispatch ({
       type: GET_FILTERED_DATA_FAIL,

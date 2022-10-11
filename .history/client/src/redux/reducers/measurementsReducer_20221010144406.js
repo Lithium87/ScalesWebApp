@@ -60,7 +60,7 @@ export const measurementsPerScaleReducer = (
   }
 };
 
-export const filteredMeasurementsPerScaleReducer = (
+export const filteredMeasurementsPerScale = (
   state = {filteredMeasurementsPerScale: []},
   action
 ) => {

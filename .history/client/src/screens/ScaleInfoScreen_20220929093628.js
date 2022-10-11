@@ -1,7 +1,7 @@
 ﻿import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {Button} from 'react-bootstrap';
+import {Button, Table} from 'react-bootstrap';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -39,8 +39,8 @@ const ScaleInfoScreen = () => {
     measurementsPerScale: measurements,
   } = measurementsPerScale;
 
-  const filteredMeasurementsPerScale = useSelector (
-    state => state.filteredMeasurementsPerScale
+  const filteredMeasurements = useSelector (
+    state => state.listFilteredMeasurementsPerScale
   );
 
   const operatorsList = useSelector (state => state.operatorsList);
@@ -62,25 +62,9 @@ const ScaleInfoScreen = () => {
       [event.target.id]: event.target.value,
     }));
 
-    if (measurements) {
-      dispatch (listFilteredMeasurementsPerScale (id, filters));
-      <MeasurementPerScaleTable
-        measurements={filteredMeasurementsPerScale}
-        changeTimeFormat={changeTimeFormat}
-      />;
-    }
-
-    console.log ('FILTERS: ', filters);
-    console.log ('TYPE OF FILTERS: ', typeof filters);
-    console.log ('-----------------------------');
-    console.log ('MEASUREMENTS: ', measurements);
-    console.log ('TYPES OF MEASUREMENT: ', typeof measurements);
-    console.log ('-----------------------------');
-    console.log ('FILTERED MEASUREMENTS: ', filteredMeasurementsPerScale);
-    console.log (
-      'TYPE OF FILTERED MEASUREMENTS: ',
-      typeof filteredMeasurementsPerScale
-    );
+    console.log (filters);
+    console.log (typeof filters);
+    console.log (measurements);
   };
 
   const handleChangeMaterials = e => {

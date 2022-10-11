@@ -50,29 +50,3 @@ export const listMeasurementsPerScale = id => async dispatch => {
     });
   }
 };
-
-export const listFilteredMeasurementsPerScale = (
-  id,
-  filters = {}
-) => async dispatch => {
-  const reqData = {
-    ...filters,
-  };
-
-  try {
-    dispatch ({type: GET_FILTERED_DATA_REQUEST});
-    const {data} = await axios.post (
-      `http://localhost:5000/api/measurements/${id}`,
-      reqData
-    );
-
-    dispatch ({type: GET_FILTERED_DATA_SUCCESS, payload: data});
-  } catch (error) {
-    dispatch ({
-      type: GET_FILTERED_DATA_FAIL,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
-    });
-  }
-};

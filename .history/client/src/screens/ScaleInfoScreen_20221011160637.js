@@ -64,10 +64,6 @@ const ScaleInfoScreen = () => {
 
     if (measurements) {
       dispatch (listFilteredMeasurementsPerScale (id, filters));
-      <MeasurementPerScaleTable
-        measurements={filteredMeasurementsPerScale}
-        changeTimeFormat={changeTimeFormat}
-      />;
     }
 
     console.log ('FILTERS: ', filters);

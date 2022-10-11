@@ -1,7 +1,7 @@
 ﻿import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {Button} from 'react-bootstrap';
+import {Button, Table} from 'react-bootstrap';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -9,10 +9,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import SearchForm from '../components/SearchForm';
 import MeasurementPerScaleTable from '../components/MeasurementPerScaleTable';
-import {
-  listMeasurementsPerScale,
-  listFilteredMeasurementsPerScale,
-} from '../redux/actions/measurementsActions';
+import {listMeasurementsPerScale} from '../redux/actions/measurementsActions';
 import {listOperators} from '../redux/actions/operatorActions';
 
 const ScaleInfoScreen = () => {
@@ -39,10 +36,6 @@ const ScaleInfoScreen = () => {
     measurementsPerScale: measurements,
   } = measurementsPerScale;
 
-  const filteredMeasurementsPerScale = useSelector (
-    state => state.filteredMeasurementsPerScale
-  );
-
   const operatorsList = useSelector (state => state.operatorsList);
   const {operators} = operatorsList;
 
@@ -61,26 +54,6 @@ const ScaleInfoScreen = () => {
       ...prevState,
       [event.target.id]: event.target.value,
     }));
-
-    if (measurements) {
-      dispatch (listFilteredMeasurementsPerScale (id, filters));
-      <MeasurementPerScaleTable
-        measurements={filteredMeasurementsPerScale}
-        changeTimeFormat={changeTimeFormat}
-      />;
-    }
-
-    console.log ('FILTERS: ', filters);
-    console.log ('TYPE OF FILTERS: ', typeof filters);
-    console.log ('-----------------------------');
-    console.log ('MEASUREMENTS: ', measurements);
-    console.log ('TYPES OF MEASUREMENT: ', typeof measurements);
-    console.log ('-----------------------------');
-    console.log ('FILTERED MEASUREMENTS: ', filteredMeasurementsPerScale);
-    console.log (
-      'TYPE OF FILTERED MEASUREMENTS: ',
-      typeof filteredMeasurementsPerScale
-    );
   };
 
   const handleChangeMaterials = e => {

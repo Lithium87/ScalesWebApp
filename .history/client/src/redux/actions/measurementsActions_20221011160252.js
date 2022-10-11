@@ -55,9 +55,7 @@ export const listFilteredMeasurementsPerScale = (
   id,
   filters = {}
 ) => async dispatch => {
-  const reqData = {
-    ...filters,
-  };
+  const reqData = [...filters];
 
   try {
     dispatch ({type: GET_FILTERED_DATA_REQUEST});

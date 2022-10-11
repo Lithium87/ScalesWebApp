@@ -61,7 +61,7 @@ export const measurementsPerScaleReducer = (
 };
 
 export const filteredMeasurementsPerScaleReducer = (
-  state = {filteredMeasurementsPerScale: []},
+  state = {filteredMeasurementsPerScale: {}},
   action
 ) => {
   switch (action.type) {

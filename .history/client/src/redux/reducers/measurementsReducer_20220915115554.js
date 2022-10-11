@@ -61,19 +61,19 @@ export const measurementsPerScaleReducer = (
 };
 
 export const filteredMeasurementsPerScaleReducer = (
-  state = {filteredMeasurementsPerScale: []},
+  state = {filteredData: []},
   action
 ) => {
   switch (action.type) {
     case GET_FILTERED_DATA_REQUEST:
       return {
         loading: true,
-        filteredMeasurementsPerScale: [],
+        filteredData: [],
       };
     case GET_FILTERED_DATA_SUCCESS:
       return {
         loading: false,
-        filteredMeasurementsPerScale: action.payload,
+        filteredData: action.payload.filteredData,
       };
     case GET_FILTERED_DATA_FAIL:
       return {

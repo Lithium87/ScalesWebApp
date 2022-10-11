@@ -73,7 +73,7 @@ export const filteredMeasurementsPerScaleReducer = (
     case GET_FILTERED_DATA_SUCCESS:
       return {
         loading: false,
-        filteredMeasurementsPerScale: action.payload,
+        filteredMeasurementsPerScale: action.payload.data,
       };
     case GET_FILTERED_DATA_FAIL:
       return {
