@@ -7,7 +7,7 @@ const morgan = require ('morgan');
 const scaleRoutes = require ('./routes/scaleRoutes');
 const measurementRoutes = require ('./routes/measurementRoutes');
 const operatorRoutes = require ('./routes/operatorRoutes');
-const plateGratingsTolerancesRoutes = require ('./routes/plateGratingsTolerancesRoutes');
+const tolerancesRoutes = require ('./routes/tolerancesRoutes');
 const {notFound, errorHandler} = require ('./middleware/errorMiddleware');
 
 dotenv.config ();
@@ -34,10 +34,7 @@ db.sequelize.authenticate ().then (
 app.use ('/api/scales', scaleRoutes);
 app.use ('/api/measurements', measurementRoutes);
 app.use ('/api/operators', operatorRoutes);
-app.use (
-  '/api/settings/plate_gratings_tolerances',
-  plateGratingsTolerancesRoutes
-);
+app.use ('/api/settings/plate_gratings_tolerances', tolerancesRoutes);
 
 app.use (notFound);
 app.use (errorHandler);

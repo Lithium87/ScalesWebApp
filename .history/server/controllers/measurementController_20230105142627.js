@@ -70,6 +70,8 @@ exports.applyFilters = asyncHandler (async (req, res) => {
     },
   });
 
+  console.log (filteredMeasurementsPerScale);
+
   if (filteredMeasurementsPerScale) {
     res.json (filteredMeasurementsPerScale);
   } else {

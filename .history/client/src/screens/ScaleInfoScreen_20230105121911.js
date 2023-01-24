@@ -40,8 +40,9 @@ const ScaleInfoScreen = () => {
   const filteredMeasurementsPerScale = useSelector (
     state => state.filteredMeasurementsPerScale
   );
-
   const {
+    loading: loadingFiltered,
+    error: errorFiltered,
     filteredMeasurementsPerScale: filteredPerScale,
   } = filteredMeasurementsPerScale;
 
@@ -68,10 +69,17 @@ const ScaleInfoScreen = () => {
       dispatch (listFilteredMeasurementsPerScale (id, filters));
 
       <MeasurementPerScaleTable
-        measurement={filteredPerScale}
+        measurement={filteredMeasurementsPerScale}
         changeTimeFormat={changeTimeFormat}
       />;
     }
+
+    console.log ('FILTERS: ', filters);
+    console.log ('MEASUREMENTS: ', measurements);
+    console.log (
+      'FILTERED MEASUREMENTS PER SCALE: ',
+      filteredMeasurementsPerScale
+    );
   };
 
   const handleChangeMaterials = e => {

@@ -17,12 +17,10 @@ import {listOperators} from '../redux/actions/operatorActions';
 const ScaleInfoScreen = () => {
   const [checkedMaterial, setCheckedMaterial] = useState (false);
   const [checkedOperator, setCheckedOperator] = useState (false);
-  const [filters, setFilters] = useState ({
-    fromDate: '',
-    toDate: '',
-    material: '',
-    operator: '',
-  });
+  const [fromDate, setFromDate] = useState (new Date ());
+  const [toDate, setToDate] = useState (new Date ());
+  const [material, setMaterial] = useState ('');
+  const [operator, setOperator] = useState ('');
 
   const dispatch = useDispatch ();
 
@@ -40,8 +38,9 @@ const ScaleInfoScreen = () => {
   const filteredMeasurementsPerScale = useSelector (
     state => state.filteredMeasurementsPerScale
   );
-
   const {
+    loading: loadingFiltered,
+    error: errorFiltered,
     filteredMeasurementsPerScale: filteredPerScale,
   } = filteredMeasurementsPerScale;
 
@@ -59,42 +58,33 @@ const ScaleInfoScreen = () => {
 
   const handleFilters = event => {
     event.preventDefault ();
-    setFilters (prevState => ({
-      ...prevState,
-      [event.target.id]: event.target.value,
-    }));
 
-    if (measurements) {
-      dispatch (listFilteredMeasurementsPerScale (id, filters));
+    console.log ('From date: ', fromDate);
+    console.log ('To date: ', toDate);
+    console.log (material);
+    console.log (operator);
 
-      <MeasurementPerScaleTable
-        measurement={filteredPerScale}
-        changeTimeFormat={changeTimeFormat}
-      />;
-    }
+    dispatch (
+      listFilteredMeasurementsPerScale (
+        id,
+        fromDate,
+        toDate,
+        material,
+        operator
+      )
+    );
+
+    console.log ('Filtered: ', filteredPerScale);
   };
 
   const handleChangeMaterials = e => {
     setCheckedMaterial (e.target.checked);
-    setFilters (prevState => ({
-      ...prevState,
-      material: '',
-    }));
+    setMaterial ('');
   };
 
   const handleChangeOperators = e => {
     setCheckedOperator (e.target.checked);
-    setFilters (prevState => ({
-      ...prevState,
-      operator: '',
-    }));
-  };
-
-  const onChange = e => {
-    setFilters (prevState => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
+    setOperator ('');
   };
 
   const changeTimeFormat = inputTime => {
@@ -166,8 +156,8 @@ const ScaleInfoScreen = () => {
           <input
             type="date"
             id="fromDate"
-            value={filters.fromDate}
-            onChange={onChange}
+            value={fromDate}
+            onChange={e => setFromDate (e.target.value)}
           />
         </div>
         <div className="searchFormItem">
@@ -175,16 +165,16 @@ const ScaleInfoScreen = () => {
           <input
             type="date"
             id="toDate"
-            value={filters.toDate}
-            onChange={onChange}
+            value={toDate}
+            onChange={e => setToDate (e.target.value)}
           />
         </div>
         <div className="searchFormItem">
           <label htmlFor="material">Материал: </label>
           <select
             id="material"
-            value={filters.material}
-            onChange={onChange}
+            value={material}
+            onChange={e => setMaterial (e.target.value)}
             disabled={checkedMaterial ? true : false}
           >
             <option>--Избери материал--</option>
@@ -209,8 +199,8 @@ const ScaleInfoScreen = () => {
           <label htmlFor="operator">Оператор: </label>
           <select
             id="operator"
-            value={filters.operator}
-            onChange={onChange}
+            value={operator}
+            onChange={e => setOperator (e.target.value)}
             disabled={checkedOperator ? true : false}
           >
             <option>--Избери оператор--</option>

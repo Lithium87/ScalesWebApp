@@ -72,6 +72,13 @@ const ScaleInfoScreen = () => {
         changeTimeFormat={changeTimeFormat}
       />;
     }
+
+    console.log ('FILTERS: ', filters);
+    console.log ('MEASUREMENTS: ', measurements);
+    console.log (
+      'FILTERED MEASUREMENTS PER SCALE: ',
+      filteredPerScale.filteredMeasurementsPerScale
+    );
   };
 
   const handleChangeMaterials = e => {

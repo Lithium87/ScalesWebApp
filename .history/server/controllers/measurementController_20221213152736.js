@@ -70,10 +70,5 @@ exports.applyFilters = asyncHandler (async (req, res) => {
     },
   });
 
-  if (filteredMeasurementsPerScale) {
-    res.json (filteredMeasurementsPerScale);
-  } else {
-    res.status (404);
-    throw new Error ('No measurements!');
-  }
+  console.log (filteredMeasurementsPerScale);
 });
