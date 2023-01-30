@@ -8,7 +8,7 @@ const scaleRoutes = require ('./routes/scaleRoutes');
 const measurementRoutes = require ('./routes/measurementRoutes');
 const operatorRoutes = require ('./routes/operatorRoutes');
 const plateGratingsTolerancesRoutes = require ('./routes/plateGratingsTolerancesRoutes');
-const leadPasteTolerancesRoutes = require ('./routes/leadPasteTolerancesRoutes');
+const leadPasteTolerances = require ('./routes/leadPasteTolerancesRoutes');
 const {notFound, errorHandler} = require ('./middleware/errorMiddleware');
 
 dotenv.config ();
@@ -39,7 +39,7 @@ app.use (
   '/api/settings/plate_gratings_tolerances',
   plateGratingsTolerancesRoutes
 );
-app.use ('/api/settings/lead_paste_tolerances', leadPasteTolerancesRoutes);
+app.use ('/api/settings/lead_paste_tolerances');
 
 app.use (notFound);
 app.use (errorHandler);
