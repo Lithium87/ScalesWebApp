@@ -50,7 +50,6 @@ const PlateGratingsTolerancesScreen = () => {
                     <th>Допуск №</th>
                     <th>Име на плоча / решетка</th>
                     <th>Карта №</th>
-                    <th>Номинал</th>
                     <th>Номинал (-)</th>
                     <th>Номинал (--)</th>
                     <th>Номинал (+)</th>
@@ -65,7 +64,6 @@ const PlateGratingsTolerancesScreen = () => {
                         <td>{i + 1}</td>
                         <td>{tolerance.plateGridName}</td>
                         <td>{tolerance.cardNumber}</td>
-                        <td>{tolerance.nominal}</td>
                         <td>{tolerance.nominalMin1}</td>
                         <td>{tolerance.nominalMin2}</td>
                         <td>{tolerance.nominalMax1}</td>

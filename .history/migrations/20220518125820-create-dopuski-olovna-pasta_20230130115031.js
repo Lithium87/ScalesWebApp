@@ -21,11 +21,6 @@ module.exports = {
         allowNull: false,
         defaultValue: 0,
       },
-      nominalDensity: {
-        type: Sequelize.REAL,
-        allowNull: false,
-        defaultValue: 150.00,
-      },
       nominalDensityMin1: {
         type: Sequelize.REAL,
         allowNull: false,

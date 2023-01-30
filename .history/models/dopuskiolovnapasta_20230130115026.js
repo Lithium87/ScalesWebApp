@@ -1,7 +1,7 @@
 'use strict';
 const {Model} = require ('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class dopuskiPlo4iRe6etki extends Model {
+  class dopuskiOlovnaPasta extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,16 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
-      models.dopuskiPlo4iRe6etki.belongsTo (models.Material, {
+      models.dopuskiOlovnaPasta.belongsTo (models.Material, {
         foreignKey: 'materialId',
         constraints: false,
       });
-      models.Material.hasMany (models.dopuskiPlo4iRe6etki);
+      models.Material.hasMany (models.dopuskiOlovnaPasta);
     }
   }
-  dopuskiPlo4iRe6etki.init (
+  dopuskiOlovnaPasta.init (
     {
-      plateGridName: {
+      leadPasteName: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -31,32 +31,32 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 0,
       },
-      nominal: {
-        type: DataTypes.REAL,
-        allowNull: false,
-        defaultValue: 100.00,
-      },
-      nominalMin1: {
+      nominalDensityMin1: {
         type: DataTypes.REAL,
         allowNull: false,
         defaultValue: 0.00,
       },
-      nominalMax1: {
+      nominalDensityMax1: {
         type: DataTypes.REAL,
         allowNull: false,
         defaultValue: 0.00,
       },
-      nominalMin2: {
+      nominalDensityMin2: {
         type: DataTypes.REAL,
         allowNull: false,
         defaultValue: 0.00,
       },
-      nominalMax2: {
+      nominalDensityMax2: {
         type: DataTypes.REAL,
         allowNull: false,
         defaultValue: 0.00,
       },
-      sampleTime: {
+      minPenetration: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      maxPenetration: {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 0,
@@ -67,10 +67,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'dopuskiPlo4iRe6etki',
-      tableName: 'DopuskiPlo4iRe6etki',
+      modelName: 'dopuskiOlovnaPasta',
+      tableName: 'DopuskiOlovnaPasta',
       timestamps: false,
     }
   );
-  return dopuskiPlo4iRe6etki;
+  return dopuskiOlovnaPasta;
 };
