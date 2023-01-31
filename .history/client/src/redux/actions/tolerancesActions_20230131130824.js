@@ -22,7 +22,7 @@ export const getAllPlateGratingsTolerances = () => async dispatch => {
     });
   } catch (error) {
     dispatch ({
-      type: GET_LEAD_PASTE_TOLERANCES_FAILURE,
+      type: GET_PLATE_GRATINGS_TOLERANCES_FAILURE,
       payload: error.response && error.response.data.message
         ? error.response.data.message
         : error.message,

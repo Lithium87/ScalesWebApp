@@ -26,6 +26,9 @@ const LeadPasteTolerancesScreen = () => {
     [dispatch]
   );
 
+  console.log (tolerances);
+  console.log (typeof tolerances);
+
   return (
     <React.Fragment>
       <h3>Допуски оловна паста</h3>
@@ -63,15 +66,15 @@ const LeadPasteTolerancesScreen = () => {
                         <td>{i + 1}</td>
                         <td>{tolerance.leadPasteName}</td>
                         <td>{tolerance.cardNumber}</td>
-                        <td>{tolerance.nominalDensity}</td>
-                        <td>{tolerance.nominalDensityMin1}</td>
-                        <td>{tolerance.nominalDensityMin2}</td>
-                        <td>{tolerance.nominalDensityMax1}</td>
-                        <td>{tolerance.nominalDensityMax2}</td>
+                        <td>{tolerance.nominalDencity}</td>
+                        <td>{tolerance.nominalDencityMin1}</td>
+                        <td>{tolerance.nominalDencityMin2}</td>
+                        <td>{tolerance.nominalDencityMax1}</td>
+                        <td>{tolerance.nominalDencityMax2}</td>
                         <td>
-                          <Button className="shadow rounded btn btn-secondary btn-sm m-3">
+                          <button shadow rounded btn btn-secondary btn-sm m3>
                             Редактирай
-                          </Button>
+                          </button>
                         </td>
                       </tr>
                     ))}

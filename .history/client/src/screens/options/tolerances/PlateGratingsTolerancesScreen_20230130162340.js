@@ -4,31 +4,33 @@ import {Button, Table} from 'react-bootstrap';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import {
-  getAllLeadPasteTolerances,
+  getAllPlateGratingsTolerances,
 } from '../../../redux/actions/tolerancesActions';
 
-const LeadPasteTolerancesScreen = () => {
+const PlateGratingsTolerancesScreen = () => {
   const dispatch = useDispatch ();
 
-  const allLeadPasteTolerances = useSelector (
-    state => state.allLeadPasteTolerances
+  const allPlateGratingsTolerances = useSelector (
+    state => state.allPlateGratingsTolerances
   );
   const {
     loading,
     error,
-    allLeadPasteTolerances: tolerances,
-  } = allLeadPasteTolerances;
+    allPlateGratingsTolerances: tolerances,
+  } = allPlateGratingsTolerances;
 
   useEffect (
     () => {
-      dispatch (getAllLeadPasteTolerances ());
+      dispatch (getAllPlateGratingsTolerances ());
     },
     [dispatch]
   );
 
+  console.log (tolerances);
+
   return (
     <React.Fragment>
-      <h3>Допуски оловна паста</h3>
+      <h3>Допуски на плочи / решетки</h3>
 
       {loading
         ? <Loader />
@@ -40,19 +42,19 @@ const LeadPasteTolerancesScreen = () => {
                 hover
                 responsive
                 className="table-sm"
-                id="lpTolerances"
+                id="pgTolerances"
                 style={{background: 'white'}}
               >
                 <thead>
                   <tr>
                     <th>Допуск №</th>
-                    <th>Име на оловна паста</th>
+                    <th>Име на плоча / решетка</th>
                     <th>Карта №</th>
-                    <th>Номинална плътност</th>
-                    <th>Номинална плътност (-)</th>
-                    <th>Номинална плътност (--)</th>
-                    <th>Номинална плътност (+)</th>
-                    <th>Номинална плътност (++)</th>
+                    <th>Номинал</th>
+                    <th>Номинал (-)</th>
+                    <th>Номинал (--)</th>
+                    <th>Номинал (+)</th>
+                    <th>Номинал (++)</th>
                     <th />
                   </tr>
                 </thead>
@@ -61,15 +63,15 @@ const LeadPasteTolerancesScreen = () => {
                     tolerances.map ((tolerance, i) => (
                       <tr key={tolerance.id}>
                         <td>{i + 1}</td>
-                        <td>{tolerance.leadPasteName}</td>
+                        <td>{tolerance.plateGridName}</td>
                         <td>{tolerance.cardNumber}</td>
-                        <td>{tolerance.nominalDensity}</td>
-                        <td>{tolerance.nominalDensityMin1}</td>
-                        <td>{tolerance.nominalDensityMin2}</td>
-                        <td>{tolerance.nominalDensityMax1}</td>
-                        <td>{tolerance.nominalDensityMax2}</td>
+                        <td>{tolerance.nominal}</td>
+                        <td>{tolerance.nominalMin1}</td>
+                        <td>{tolerance.nominalMin2}</td>
+                        <td>{tolerance.nominalMax1}</td>
+                        <td>{tolerance.nominalMax2}</td>
                         <td>
-                          <Button className="shadow rounded btn btn-secondary btn-sm m-3">
+                          <Button className="shadow rounded btn btn-secondary btn-sm m3">
                             Редактирай
                           </Button>
                         </td>
@@ -81,4 +83,4 @@ const LeadPasteTolerancesScreen = () => {
   );
 };
 
-export default LeadPasteTolerancesScreen;
+export default PlateGratingsTolerancesScreen;

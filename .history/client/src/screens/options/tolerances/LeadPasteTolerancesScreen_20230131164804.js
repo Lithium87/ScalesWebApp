@@ -26,6 +26,9 @@ const LeadPasteTolerancesScreen = () => {
     [dispatch]
   );
 
+  console.log (tolerances);
+  console.log (typeof tolerances);
+
   return (
     <React.Fragment>
       <h3>Допуски оловна паста</h3>

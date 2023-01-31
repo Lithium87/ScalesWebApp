@@ -45,7 +45,7 @@ export const allLeadPasteTolerancesReducer = (
     case GET_LEAD_PASTE_TOLERANCES_SUCCESS:
       return {
         loading: false,
-        allLeadPasteTolerances: action.payload,
+        allLeadPasteTolerancesReducer: action.payload,
       };
     case GET_LEAD_PASTE_TOLERANCES_FAILURE:
       return {
