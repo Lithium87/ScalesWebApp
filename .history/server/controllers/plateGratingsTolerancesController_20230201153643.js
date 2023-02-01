@@ -19,7 +19,7 @@ exports.getPlateGratingsTolerances = asyncHandler (async (req, res) => {
 });
 
 exports.getPlateGratingsToleranceById = asyncHandler (async (req, res) => {
-  const plateGratingsToleranceById = await db.dopuskiPlo4iRe6etki.findAll ({
+  const plateGratingsToleranceById = await db.dopuskiPlo4iRe6etki.findByPk ({
     attributes: [
       'id',
       'plateGridName',
