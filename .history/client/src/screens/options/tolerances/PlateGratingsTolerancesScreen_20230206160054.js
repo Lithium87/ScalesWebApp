@@ -34,7 +34,7 @@ const PlateGratingsTolerancesScreen = () => {
     () => {
       dispatch (getAllPlateGratingsTolerances ());
     },
-    [dispatch, id]
+    [dispatch]
   );
 
   const displayEditForm = e => {

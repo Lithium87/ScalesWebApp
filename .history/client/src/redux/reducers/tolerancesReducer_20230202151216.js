@@ -61,14 +61,14 @@ export const allLeadPasteTolerancesReducer = (
 };
 
 export const plateGratingsTolerancesByIdReducer = (
-  state = {plateGratingsTolerancesById: []},
+  state = {plateGratingsTolerancesById: {}},
   action
 ) => {
   switch (action.type) {
     case GET_PLATE_GRATINGS_TOLERANCES_BY_ID_REQUEST:
       return {
         loading: true,
-        plateGratingsTolerancesById: [],
+        plateGratingsTolerancesById: {},
       };
     case GET_PLATE_GRATINGS_TOLERANCES_BY_ID_SUCCESS:
       return {

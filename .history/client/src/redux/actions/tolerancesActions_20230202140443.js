@@ -55,12 +55,12 @@ export const getAllLeadPasteTolerances = () => async dispatch => {
   }
 };
 
-export const getPlateGratingsTolerancesById = id => async dispatch => {
+export const getPlateGratingsTolerancesById = () => async dispatch => {
   try {
     dispatch ({type: GET_PLATE_GRATINGS_TOLERANCES_BY_ID_REQUEST});
 
     const {data} = axios.get (
-      `http://localhost:5000/api/settings/plate_gratings_tolerances/${id}`
+      'http://localhost:5000/api/plate_gratings_tolerances/:id'
     );
 
     dispatch ({
@@ -70,8 +70,8 @@ export const getPlateGratingsTolerancesById = id => async dispatch => {
   } catch (error) {
     dispatch ({
       type: GET_PLATE_GRATINGS_TOLERANCES_BY_ID_FAILURE,
-      payload: error.responce && error.responce.data.message
-        ? error.responce.data.message
+      payload: error.response && error.response.data.message
+        ? error.response.data.message
         : error.message,
     });
   }

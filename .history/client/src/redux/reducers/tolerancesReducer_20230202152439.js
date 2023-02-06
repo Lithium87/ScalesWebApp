@@ -73,7 +73,7 @@ export const plateGratingsTolerancesByIdReducer = (
     case GET_PLATE_GRATINGS_TOLERANCES_BY_ID_SUCCESS:
       return {
         loading: false,
-        plateGratingsTolerancesById: action.payload,
+        plateGratingsTolerancesById: action.payload.data,
       };
     case GET_PLATE_GRATINGS_TOLERANCES_BY_ID_FAILURE:
       return {

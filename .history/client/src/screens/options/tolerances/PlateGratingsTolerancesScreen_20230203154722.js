@@ -23,23 +23,16 @@ const PlateGratingsTolerancesScreen = () => {
     allPlateGratingsTolerances: tolerances,
   } = allPlateGratingsTolerances;
 
-  const plateGratingsTolerancesById = useSelector (
-    state => state.plateGratingsTolerancesById
-  );
-  const {
-    plateGratingsTolerancesById: tolerancesById,
-  } = plateGratingsTolerancesById;
-
   useEffect (
     () => {
       dispatch (getAllPlateGratingsTolerances ());
+      dispatch (getPlateGratingsTolerancesById (id));
     },
     [dispatch, id]
   );
 
-  const displayEditForm = e => {
-    dispatch (getPlateGratingsTolerancesById (id));
-    console.log (tolerancesById);
+  const displayEditForm = id => {
+    console.log (id);
   };
 
   return (
@@ -86,7 +79,7 @@ const PlateGratingsTolerancesScreen = () => {
                         <td>{tolerance.nominalMax2}</td>
                         <td>
                           <Button
-                            onClick={displayEditForm}
+                            onClick={e => displayEditForm (e.target.value)}
                             className="shadow rounded btn btn-secondary btn-sm m3"
                           >
                             Редактирай

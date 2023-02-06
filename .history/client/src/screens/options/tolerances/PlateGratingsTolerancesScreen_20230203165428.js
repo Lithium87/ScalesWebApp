@@ -12,8 +12,6 @@ import {
 const PlateGratingsTolerancesScreen = () => {
   const dispatch = useDispatch ();
 
-  const {id} = useParams ();
-
   const allPlateGratingsTolerances = useSelector (
     state => state.allPlateGratingsTolerances
   );
@@ -29,6 +27,8 @@ const PlateGratingsTolerancesScreen = () => {
   const {
     plateGratingsTolerancesById: tolerancesById,
   } = plateGratingsTolerancesById;
+
+  const {id} = useParams ();
 
   useEffect (
     () => {

@@ -33,12 +33,14 @@ const PlateGratingsTolerancesScreen = () => {
   useEffect (
     () => {
       dispatch (getAllPlateGratingsTolerances ());
+      dispatch (getPlateGratingsTolerancesById (id));
     },
     [dispatch, id]
   );
 
-  const displayEditForm = e => {
-    dispatch (getPlateGratingsTolerancesById (id));
+  console.log (tolerancesById);
+
+  const displayEditForm = () => {
     console.log (tolerancesById);
   };
 

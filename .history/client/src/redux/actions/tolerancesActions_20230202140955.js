@@ -70,8 +70,8 @@ export const getPlateGratingsTolerancesById = id => async dispatch => {
   } catch (error) {
     dispatch ({
       type: GET_PLATE_GRATINGS_TOLERANCES_BY_ID_FAILURE,
-      payload: error.responce && error.responce.data.message
-        ? error.responce.data.message
+      payload: error.response && error.response.data.message
+        ? error.response.data.message
         : error.message,
     });
   }

@@ -1,18 +1,15 @@
 import React, {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Table} from 'react-bootstrap';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
+import EditForm from '../../../components/EditForm';
 import {
   getAllPlateGratingsTolerances,
-  getPlateGratingsTolerancesById,
 } from '../../../redux/actions/tolerancesActions';
 
 const PlateGratingsTolerancesScreen = () => {
   const dispatch = useDispatch ();
-
-  const {id} = useParams ();
 
   const allPlateGratingsTolerances = useSelector (
     state => state.allPlateGratingsTolerances
@@ -23,23 +20,15 @@ const PlateGratingsTolerancesScreen = () => {
     allPlateGratingsTolerances: tolerances,
   } = allPlateGratingsTolerances;
 
-  const plateGratingsTolerancesById = useSelector (
-    state => state.plateGratingsTolerancesById
-  );
-  const {
-    plateGratingsTolerancesById: tolerancesById,
-  } = plateGratingsTolerancesById;
-
   useEffect (
     () => {
       dispatch (getAllPlateGratingsTolerances ());
     },
-    [dispatch, id]
+    [dispatch]
   );
 
   const displayEditForm = e => {
-    dispatch (getPlateGratingsTolerancesById (id));
-    console.log (tolerancesById);
+    <EditForm />;
   };
 
   return (

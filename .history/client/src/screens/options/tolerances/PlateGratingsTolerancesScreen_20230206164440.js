@@ -38,8 +38,7 @@ const PlateGratingsTolerancesScreen = () => {
   );
 
   const displayEditForm = e => {
-    dispatch (getPlateGratingsTolerancesById (id));
-    console.log (tolerancesById);
+    console.log (e.target.value);
   };
 
   return (
@@ -86,7 +85,7 @@ const PlateGratingsTolerancesScreen = () => {
                         <td>{tolerance.nominalMax2}</td>
                         <td>
                           <Button
-                            onClick={displayEditForm}
+                            onClick={e => console.log (e.target.value)}
                             className="shadow rounded btn btn-secondary btn-sm m3"
                           >
                             Редактирай

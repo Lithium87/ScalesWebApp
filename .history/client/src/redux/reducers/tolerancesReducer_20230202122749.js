@@ -70,12 +70,12 @@ export const plateGratingsTolerancesByIdReducer = (
         loading: true,
         plateGratingsTolerancesById: [],
       };
-    case GET_PLATE_GRATINGS_TOLERANCES_BY_ID_SUCCESS:
+    case GET_LEAD_PASTE_TOLERANCES_SUCCESS:
       return {
         loading: false,
         plateGratingsTolerancesById: action.payload,
       };
-    case GET_PLATE_GRATINGS_TOLERANCES_BY_ID_FAILURE:
+    case GET_LEAD_PASTE_TOLERANCES_FAILURE:
       return {
         loading: false,
         error: action.payload,

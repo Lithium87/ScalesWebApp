@@ -6,7 +6,6 @@ import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import {
   getAllPlateGratingsTolerances,
-  getPlateGratingsTolerancesById,
 } from '../../../redux/actions/tolerancesActions';
 
 const PlateGratingsTolerancesScreen = () => {
@@ -23,23 +22,15 @@ const PlateGratingsTolerancesScreen = () => {
     allPlateGratingsTolerances: tolerances,
   } = allPlateGratingsTolerances;
 
-  const plateGratingsTolerancesById = useSelector (
-    state => state.plateGratingsTolerancesById
-  );
-  const {
-    plateGratingsTolerancesById: tolerancesById,
-  } = plateGratingsTolerancesById;
-
   useEffect (
     () => {
       dispatch (getAllPlateGratingsTolerances ());
     },
-    [dispatch, id]
+    [dispatch]
   );
 
-  const displayEditForm = e => {
-    dispatch (getPlateGratingsTolerancesById (id));
-    console.log (tolerancesById);
+  const displayEditForm = () => {
+    console.log (id);
   };
 
   return (
