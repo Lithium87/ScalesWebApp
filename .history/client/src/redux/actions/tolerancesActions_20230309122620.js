@@ -15,9 +15,6 @@ import {
   GET_LEAD_PASTE_TOLERANCES_BY_ID_REQUEST,
   GET_LEAD_PASTE_TOLERANCES_BY_ID_SUCCESS,
   GET_LEAD_PASTE_TOLERANCES_BY_ID_FAILURE,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_REQUEST,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_SUCCESS,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_FAILURE,
 } from '../constants/tolerancesConstants';
 
 export const getAllPlateGratingsTolerances = () => async dispatch => {
@@ -123,46 +120,5 @@ export const listLeadPasteTolerancesById = id => async dispatch => {
     const {data} = await axios.get (
       `http://localhost:5000/api/settings/lead_paste_tolerances/${id}`
     );
-
-    dispatch ({
-      type: GET_LEAD_PASTE_TOLERANCES_BY_ID_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch ({
-      type: GET_LEAD_PASTE_TOLERANCES_BY_ID_FAILURE,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
-    });
-  }
-};
-
-export const updateLeadPasteTolerancesById = tolerances => async dispatch => {
-  try {
-    dispatch ({type: LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_REQUEST});
-
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const {data} = await axios.put (
-      `http://localhost:5000/api/settings/lead_paste_tolerances/${tolerances.id}`,
-      tolerances.config
-    );
-
-    dispatch ({
-      type: LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch ({
-      type: LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_FAILURE,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
-    });
-  }
+  } catch (error) {}
 };

@@ -18,7 +18,6 @@ import {
   LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_REQUEST,
   LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_SUCCESS,
   LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_FAILURE,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET,
 } from '../constants/tolerancesConstants';
 
 export const allPlateGratingsTolerancesReducer = (
@@ -170,10 +169,6 @@ export const leadPasteTolerancesByIdUpdateReducer = (
       return {
         loading: false,
         error: action.payload,
-      };
-    case LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET:
-      return {
-        leadPasteTolerancesById: {},
       };
     default:
       return state;

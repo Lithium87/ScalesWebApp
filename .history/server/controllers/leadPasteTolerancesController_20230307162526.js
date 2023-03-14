@@ -19,7 +19,7 @@ exports.getLeadPasteTolerances = asyncHandler (async (req, res) => {
 });
 
 exports.getLeadPasteTolerancesById = asyncHandler (async (req, res) => {
-  const leadPasteTolerancesById = await db.dopuskiOlovnaPasta.findOne ({
+  const leadPasteTolerancesById = await db.dopuskiOlovnaPasta.findAll ({
     attributes: [
       'id',
       'leadPasteName',
@@ -37,30 +37,6 @@ exports.getLeadPasteTolerancesById = asyncHandler (async (req, res) => {
 
   if (leadPasteTolerancesById) {
     res.json (leadPasteTolerancesById);
-  } else {
-    res.status (404);
-    throw new Error ('Ooops...Something went wrong!');
-  }
-});
-
-exports.updateLeadPasteTolerancesById = asyncHandler (async (req, res) => {
-  const updatedLeadPasteTolerancesById = await db.dopuskiOlovnaPasta.update (
-    {
-      leadPasteName: req.body.leadPasteName,
-      cardNumber: req.body.cardNumber,
-      nominalDensity: req.body.nominalDensity,
-      nominalDensityMin1: req.body.nominalDensityMin1,
-      nominalDensityMin2: req.body.nominalDensityMin2,
-      nominalDensityMax1: req.body.nominalDensityMax1,
-      nominalDensityMax2: req.body.nominalDensityMax2,
-    },
-    {
-      where: {id: req.params.id},
-    }
-  );
-
-  if (updatedLeadPasteTolerancesById) {
-    res.json (updatedLeadPasteTolerancesById);
   } else {
     res.status (404);
     throw new Error ('Ooops...Something went wrong!');

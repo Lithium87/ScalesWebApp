@@ -44,7 +44,7 @@ exports.getLeadPasteTolerancesById = asyncHandler (async (req, res) => {
 });
 
 exports.updateLeadPasteTolerancesById = asyncHandler (async (req, res) => {
-  const updatedLeadPasteTolerancesById = await db.dopuskiOlovnaPasta.update (
+  const updatedLeadPasteTolerancesById = await db.DopuskiOlovnaPasta.update (
     {
       leadPasteName: req.body.leadPasteName,
       cardNumber: req.body.cardNumber,

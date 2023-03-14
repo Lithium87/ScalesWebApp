@@ -13,8 +13,7 @@ import {
   allLeadPasteTolerancesReducer,
   plateGratingsTolerancesByIdReducer,
   plateGratingsTolerancesByIdUpdateReducer,
-  leadPasteTolerancesByIdReducer,
-  leadPasteTolerancesByIdUpdateReducer,
+  leadPasteByIdUpdateReducer,
 } from './reducers/tolerancesReducer';
 
 const rootReducer = combineReducers ({
@@ -27,8 +26,7 @@ const rootReducer = combineReducers ({
   allLeadPasteTolerances: allLeadPasteTolerancesReducer,
   plateGratingsTolerancesById: plateGratingsTolerancesByIdReducer,
   plateGratingsTolerancesByIdUpdate: plateGratingsTolerancesByIdUpdateReducer,
-  leadPasteTolerancesById: leadPasteTolerancesByIdReducer,
-  leadPasteTolerancesByIdUpdate: leadPasteTolerancesByIdUpdateReducer,
+  leadPasteTolerancesById: leadPasteByIdUpdateReducer,
 });
 
 const store = createStore (

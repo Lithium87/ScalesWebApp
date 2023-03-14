@@ -15,10 +15,6 @@ import {
   GET_LEAD_PASTE_TOLERANCES_BY_ID_REQUEST,
   GET_LEAD_PASTE_TOLERANCES_BY_ID_SUCCESS,
   GET_LEAD_PASTE_TOLERANCES_BY_ID_FAILURE,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_REQUEST,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_SUCCESS,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_FAILURE,
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET,
 } from '../constants/tolerancesConstants';
 
 export const allPlateGratingsTolerancesReducer = (
@@ -144,36 +140,6 @@ export const leadPasteTolerancesByIdReducer = (
       return {
         loading: false,
         error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export const leadPasteTolerancesByIdUpdateReducer = (
-  state = {leadPasteTolerancesById: {}},
-  action
-) => {
-  switch (action.type) {
-    case LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_REQUEST:
-      return {
-        loading: true,
-        leadPasteTolerancesById: {},
-      };
-    case LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_SUCCESS:
-      return {
-        loading: false,
-        success: true,
-        leadPasteTolerancesById: action.payload,
-      };
-    case LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_FAILURE:
-      return {
-        loading: false,
-        error: action.payload,
-      };
-    case LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET:
-      return {
-        leadPasteTolerancesById: {},
       };
     default:
       return state;

@@ -51,11 +51,11 @@ exports.updateLeadPasteTolerancesById = asyncHandler (async (req, res) => {
       nominalDensity: req.body.nominalDensity,
       nominalDensityMin1: req.body.nominalDensityMin1,
       nominalDensityMin2: req.body.nominalDensityMin2,
-      nominalDensityMax1: req.body.nominalDensityMax1,
-      nominalDensityMax2: req.body.nominalDensityMax2,
+      nominalDensityMax1: nominalDensityMax1,
+      nominalDensityMax2,
     },
     {
-      where: {id: req.params.id},
+      id: req.params.id,
     }
   );
 

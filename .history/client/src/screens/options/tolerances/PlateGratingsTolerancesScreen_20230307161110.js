@@ -1,11 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
-import {Button, Table} from 'react-bootstrap';
+import {Button, Table, Form} from 'react-bootstrap';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import {
   getAllPlateGratingsTolerances,
+  listPlateGratingsTolerancesById,
 } from '../../../redux/actions/tolerancesActions';
 
 const PlateGratingsTolerancesScreen = () => {

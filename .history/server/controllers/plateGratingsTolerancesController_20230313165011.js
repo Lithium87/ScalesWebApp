@@ -43,8 +43,45 @@ exports.getPlateGratingsToleranceById = asyncHandler (async (req, res) => {
   }
 });
 
+// exports.updatePlateGratingsTolerancesById = asyncHandler (async (req, res) => {
+//   const updatedPlateGratingsTolerancesById = await db.dopuskiPlo4iRe6etki.findAll (
+//     {
+//       attributes: [
+//         'plateGridName',
+//         'cardNumber',
+//         'nominal',
+//         'nominalMin1',
+//         'nominalMin2',
+//         'nominalMax1',
+//         'nominalMax2',
+//       ],
+//       where: {
+//         id: req.params.id,
+//       },
+//     }
+//   );
+
+//   console.log (req.body);
+
+//   if (updatedPlateGratingsTolerancesById) {
+//     (updatedPlateGratingsTolerancesById.plateGridName =
+//       req.body.plateGridName), (updatedPlateGratingsTolerancesById.cardNumber =
+//       req.body.cardNumber), (updatedPlateGratingsTolerancesById.nominal =
+//       req.body.nominal), (updatedPlateGratingsTolerancesById.nominalMin1 =
+//       req.body.nominalMin1), (updatedPlateGratingsTolerancesById.nominalMin2 =
+//       req.body.nominalMin2), (updatedPlateGratingsTolerancesById.nominalMax1 =
+//       req.body.nominalMax1), (updatedPlateGratingsTolerancesById.nominalMax2 =
+//       req.body.nominalMax2);
+
+//     res.json (updatedPlateGratingsTolerancesById);
+//   } else {
+//     res.status (404);
+//     throw new Error ('Ooops...Something went wrong.');
+//   }
+// });
+
 exports.updatePlateGratingsTolerancesById = asyncHandler (async (req, res) => {
-  const updatedPlateGratingsTolerancesById = await db.dopuskiPlo4iRe6etki.update (
+  await db.dopuskiPlo4iRe6etki.update (
     {
       plateGridName: req.body.plateGridName,
       cardNumber: req.body.cardNumber,
@@ -58,6 +95,10 @@ exports.updatePlateGratingsTolerancesById = asyncHandler (async (req, res) => {
       where: {id: req.params.id},
     }
   );
+
+  const updatedPlateGratingsTolerancesById = await db.findOne ({
+    where: {id: req.params.id},
+  });
 
   if (updatedPlateGratingsTolerancesById) {
     res.json (updatedPlateGratingsTolerancesById);

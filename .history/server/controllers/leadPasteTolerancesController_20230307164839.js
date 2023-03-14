@@ -19,7 +19,7 @@ exports.getLeadPasteTolerances = asyncHandler (async (req, res) => {
 });
 
 exports.getLeadPasteTolerancesById = asyncHandler (async (req, res) => {
-  const leadPasteTolerancesById = await db.dopuskiOlovnaPasta.findOne ({
+  const leadPasteTolerancesById = await db.dopuskiOlovnaPasta.findAll ({
     attributes: [
       'id',
       'leadPasteName',
@@ -44,22 +44,33 @@ exports.getLeadPasteTolerancesById = asyncHandler (async (req, res) => {
 });
 
 exports.updateLeadPasteTolerancesById = asyncHandler (async (req, res) => {
-  const updatedLeadPasteTolerancesById = await db.dopuskiOlovnaPasta.update (
-    {
-      leadPasteName: req.body.leadPasteName,
-      cardNumber: req.body.cardNumber,
-      nominalDensity: req.body.nominalDensity,
-      nominalDensityMin1: req.body.nominalDensityMin1,
-      nominalDensityMin2: req.body.nominalDensityMin2,
-      nominalDensityMax1: req.body.nominalDensityMax1,
-      nominalDensityMax2: req.body.nominalDensityMax2,
+  const updatedLeadPasteTolerancesById = await db.dopuskiOlovnaPasta.findAll ({
+    attributes: [
+      'leadPasteName',
+      'cardNumber',
+      'nominalDensity',
+      'nominalDensityMin1',
+      'nominalDensityMin2',
+      'nominalDensityMax1',
+      'nominalDensityMax2',
+    ],
+    where: {
+      id: req.params.id,
     },
-    {
-      where: {id: req.params.id},
-    }
-  );
+  });
+
+  console.log (req.body);
 
   if (updatedLeadPasteTolerancesById) {
+    (updatedLeadPasteTolerancesById.leadPasteName =
+      req.body.leadPasteName), (updatedLeadPasteTolerancesById.cardNumber =
+      req.body.cardNumber), (updatedLeadPasteTolerancesById.nominalDensity =
+      req.body.nominalDensity), (updatedLeadPasteTolerancesById.nominalDensityMin1 =
+      req.body.nominalDensityMin1), (updatedLeadPasteTolerancesById.nominalDensityMin2 =
+      req.body.nominalDensityMin2), (updatedLeadPasteTolerancesById.nominalDensityMax1 =
+      req.body.nominalDensityMax1), (updatedLeadPasteTolerancesById.nominalDensityMax2 =
+      req.body.nominalDensityMax2);
+
     res.json (updatedLeadPasteTolerancesById);
   } else {
     res.status (404);

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import Loader from '../components/Loader';
@@ -98,8 +99,8 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Label>Име на плоча / решетка</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Име на плоча / решетка"
-                      value={tolerancesById.plateGridName}
+                      placeholder={tolerancesById.plateGridName}
+                      value={plateGridName}
                       onChange={e => setPlateGridName (e.target.value)}
                     />
                   </Form.Group>
@@ -109,7 +110,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Карта №"
-                      value={tolerancesById.cardNumber}
+                      value={cardNumber}
                       onChange={e => setCardNumber (e.target.value)}
                     />
                   </Form.Group>
@@ -119,7 +120,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал"
-                      value={tolerancesById.nominal}
+                      value={nominal}
                       onChange={e => setNominal (e.target.value)}
                     />
                   </Form.Group>
@@ -129,7 +130,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (-)"
-                      value={tolerancesById.nominalMin1}
+                      value={nominalMin1}
                       onChange={e => setNominalMin1 (e.target.value)}
                     />
                   </Form.Group>
@@ -139,7 +140,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (--)"
-                      value={tolerancesById.nominalMin2}
+                      value={nominalMin2}
                       onChange={e => setNominalMin2 (e.target.value)}
                     />
                   </Form.Group>
@@ -149,7 +150,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (+)"
-                      value={tolerancesById.nominalMax1}
+                      value={nominalMax1}
                       onChange={e => setNominalMax1 (e.target.value)}
                     />
                   </Form.Group>
@@ -159,7 +160,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (++)"
-                      value={tolerancesById.nominalMax2}
+                      value={nominalMax2}
                       onChange={e => setNominalMax2 (e.target.value)}
                     />
                   </Form.Group>
