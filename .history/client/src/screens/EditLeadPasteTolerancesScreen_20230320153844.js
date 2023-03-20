@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
@@ -14,14 +14,14 @@ import {
 } from '../redux/constants/tolerancesConstants';
 
 const EditLeadPasteTolerancesScreen = () => {
-  const [data, setData] = useState ({
-    leadPasteTolerancesById: '',
-    cardNumber: 0,
-    nominalDensity: 0.0,
-    nominalDensityMin1: 0.0,
-    nominalDensityMin2: 0.0,
-    nominalDensityMax1: 0.0,
-    nominalDensityMax2: 0.0,
+  const [tolerancesData, setTolerancesData] = useState ({
+    leadPasteName: '',
+    cardNumber: '',
+    nominalDensity: '',
+    nominalDensityMin1: '',
+    nominalDensityMin2: '',
+    nominalDensityMax1: '',
+    nominalDensityMax2: '',
   });
 
   const dispatch = useDispatch ();
@@ -50,7 +50,7 @@ const EditLeadPasteTolerancesScreen = () => {
 
   useEffect (
     () => {
-      dispatch (listLeadPasteTolerancesById (id));
+      listLeadPasteTolerancesById (id);
     },
     [dispatch, id]
   );
@@ -58,7 +58,7 @@ const EditLeadPasteTolerancesScreen = () => {
   useEffect (
     () => {
       if (tolerancesById) {
-        setData ({
+        setTolerancesData ({
           leadPasteName: tolerancesById.leadPasteName,
           cardNumber: tolerancesById.cardNumber,
           nominalDensity: tolerancesById.nominalDensity,
@@ -75,14 +75,28 @@ const EditLeadPasteTolerancesScreen = () => {
   console.log (tolerancesById);
 
   const handleChange = e => {
-    setData ({
-      [e.target.name]: e.target.value,
+    setTolerancesData (prevState => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
     });
   };
 
   const submitHandler = e => {
     e.preventDefault ();
-    dispatch (updateLeadPasteTolerancesById (data));
+    dispatch (
+      updateLeadPasteTolerancesById (
+        id,
+        tolerancesData.leadPasteName,
+        tolerancesData.cardNumber,
+        tolerancesData.nominalDensity,
+        tolerancesData.nominalDensityMin1,
+        tolerancesData.nominalDensityMin2,
+        tolerancesData.nominalDensityMax1,
+        tolerancesData.nominalDensityMax2
+      )
+    );
 
     if (successUpdate) {
       dispatch ({type: LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET});
@@ -113,7 +127,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="text"
                       placeholder="Име на оловна паста"
-                      value={data.leadPasteName}
+                      value={tolerancesData.leadPasteName}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -123,7 +137,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Карта №"
-                      value={data.cardNumber}
+                      value={tolerancesData.cardNumber}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -133,7 +147,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинална плътност"
-                      value={data.nominalDensity}
+                      value={tolerancesData.nominalDensity}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -143,7 +157,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинална плътност (-)"
-                      value={data.nominalDensityMin1}
+                      value={tolerancesData.nominalDensityMin1}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -153,7 +167,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинална плътност (--)"
-                      value={data.nominalDensityMin2}
+                      value={tolerancesData.nominalDensityMin2}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -163,7 +177,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинална плътност (+)"
-                      value={data.nominalDensityMax1}
+                      value={tolerancesData.nominalDensityMax1}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -173,7 +187,7 @@ const EditLeadPasteTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинална плътност (++)"
-                      value={data.nominalDensityMax2}
+                      value={tolerancesData.nominalDensityMax2}
                       onChange={handleChange}
                     />
                   </Form.Group>

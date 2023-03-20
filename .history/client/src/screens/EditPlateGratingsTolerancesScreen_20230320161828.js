@@ -6,22 +6,22 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import FormContainer from '../components/FormContainer';
 import {
-  listLeadPasteTolerancesById,
-  updateLeadPasteTolerancesById,
+  listPlateGratingsTolerancesById,
+  updatePlateGratingsTolerancesById,
 } from '../redux/actions/tolerancesActions';
 import {
-  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET,
+  PLATE_GRATINGS_TOLERANCES_BY_ID_UPDATE_RESET,
 } from '../redux/constants/tolerancesConstants';
 
-const EditLeadPasteTolerancesScreen = () => {
+const EditPlateGratingsTolerancesScreen = () => {
   const [data, setData] = useState ({
-    leadPasteTolerancesById: '',
+    plateGridName: '',
     cardNumber: 0,
-    nominalDensity: 0.0,
-    nominalDensityMin1: 0.0,
-    nominalDensityMin2: 0.0,
-    nominalDensityMax1: 0.0,
-    nominalDensityMax2: 0.0,
+    nominal: 0,
+    nominalMin1: 0,
+    nominalMin2: 0,
+    nominalMax1: 0,
+    nominalMax2: 0,
   });
 
   const dispatch = useDispatch ();
@@ -30,49 +30,44 @@ const EditLeadPasteTolerancesScreen = () => {
 
   const {id} = useParams ();
 
-  const leadPasteTolerancesById = useSelector (
-    state => state.leadPasteTolerancesById
+  const plateGratingsTolerancesById = useSelector (
+    state => state.plateGratingsTolerancesById
   );
   const {
     loading,
     error,
-    leadPasteTolerancesById: tolerancesById,
-  } = leadPasteTolerancesById;
+    plateGratingsTolerancesById: tolerancesById,
+  } = plateGratingsTolerancesById;
 
-  const leadPasteTolerancesByIdUpdate = useSelector (
-    state => state.leadPasteTolerancesByIdUpdate
+  const plateGratingsTolerancesByIdUpdate = useSelector (
+    state => state.plateGratingsTolerancesByIdUpdate
   );
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = leadPasteTolerancesByIdUpdate;
+  } = plateGratingsTolerancesByIdUpdate;
 
   useEffect (
     () => {
-      dispatch (listLeadPasteTolerancesById (id));
+      dispatch (listPlateGratingsTolerancesById (id));
     },
     [dispatch, id]
   );
 
-  useEffect (
-    () => {
-      if (tolerancesById) {
-        setData ({
-          leadPasteName: tolerancesById.leadPasteName,
-          cardNumber: tolerancesById.cardNumber,
-          nominalDensity: tolerancesById.nominalDensity,
-          nominalDensityMin1: tolerancesById.nominalDensityMin1,
-          nominalDensityMin2: tolerancesById.nominalDensityMin2,
-          nominalDensityMax1: tolerancesById.nominalDensityMax1,
-          nominalDensityMax2: tolerancesById.nominalDensityMax2,
-        });
-      }
-    },
-    [tolerancesById]
-  );
-
   console.log (tolerancesById);
+
+  setData ({
+    plateGridName: tolerancesById.plateGridName,
+    cardNumber: tolerancesById.cardNumber,
+    nominal: tolerancesById.nominal,
+    nominalMin1: tolerancesById.nominalMin1,
+    nominalMin2: tolerancesById.nominalMin2,
+    nominalMax1: tolerancesById.nominalMax1,
+    nominalMax2: tolerancesById.nominalMax2,
+  });
+
+  console.log (data);
 
   const handleChange = e => {
     setData ({
@@ -82,25 +77,25 @@ const EditLeadPasteTolerancesScreen = () => {
 
   const submitHandler = e => {
     e.preventDefault ();
-    dispatch (updateLeadPasteTolerancesById (data));
+    dispatch (updatePlateGratingsTolerancesById (data));
 
     if (successUpdate) {
-      dispatch ({type: LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET});
-      history.push ('/settings/lead_paste_tolerances');
+      dispatch ({type: PLATE_GRATINGS_TOLERANCES_BY_ID_UPDATE_RESET});
+      history.push ('/settings/plate_gratings_tolerances');
     }
   };
 
   return (
     <React.Fragment>
       <Link
-        to="/settings/lead_paste_tolerances"
+        to="/settings/plate_gratings_tolerances"
         className="shadow rounded btn btn-secondary btn-sm m-3"
       >
         Обратно към таблицата с допуски
       </Link>
 
       <FormContainer>
-        <h3>Редактиране на допуски на оловна паста</h3>
+        <h3>Редактиране на допуски плочи / решетки</h3>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading
@@ -108,12 +103,12 @@ const EditLeadPasteTolerancesScreen = () => {
           : error
               ? <Message variant="danger">{error}</Message>
               : <Form onSubmit={submitHandler}>
-                  <Form.Group controlId="leadPasteName">
-                    <Form.Label>Име на оловна паста</Form.Label>
+                  <Form.Group controlId="plateGridName">
+                    <Form.Label>Име на плоча / решетка</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Име на оловна паста"
-                      value={data.leadPasteName}
+                      placeholder="Име на плоча / решетка"
+                      value={data.plateGridName}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -128,52 +123,52 @@ const EditLeadPasteTolerancesScreen = () => {
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="nominalDensity">
-                    <Form.Label>Номинална плътност</Form.Label>
+                  <Form.Group controlId="nominal">
+                    <Form.Label>Номинал</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Номинална плътност"
-                      value={data.nominalDensity}
+                      placeholder="Номинал"
+                      value={data.nominal}
                       onChange={handleChange}
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="nominalDensityMin1">
-                    <Form.Label>Номинална плътност (-)</Form.Label>
+                  <Form.Group controlId="nominalMin1">
+                    <Form.Label>Номинал (-)</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Номинална плътност (-)"
-                      value={data.nominalDensityMin1}
+                      placeholder="Номинал (-)"
+                      value={data.nominalMin1}
                       onChange={handleChange}
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="nominalDensityMin2">
-                    <Form.Label>Номинална плътност (--)</Form.Label>
+                  <Form.Group controlId="nominalMin2">
+                    <Form.Label>Номинал (--)</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Номинална плътност (--)"
-                      value={data.nominalDensityMin2}
+                      placeholder="Номинал (--)"
+                      value={data.nominalMin2}
                       onChange={handleChange}
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="nominalDensityMax1">
-                    <Form.Label>Номинална плътност (+)</Form.Label>
+                  <Form.Group controlId="nominalMax1">
+                    <Form.Label>Номинал (+)</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Номинална плътност (+)"
-                      value={data.nominalDensityMax1}
+                      placeholder="Номинал (+)"
+                      value={data.nominalMax1}
                       onChange={handleChange}
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="nominalDensityMax2">
-                    <Form.Label>Номинална плътност (++)</Form.Label>
+                  <Form.Group controlId="nominalMax2">
+                    <Form.Label>Номинал (++)</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Номинална плътност (++)"
-                      value={data.nominalDensityMax2}
+                      placeholder="Номинал (++)"
+                      value={data.nominalMax2}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -188,8 +183,9 @@ const EditLeadPasteTolerancesScreen = () => {
                   </Form.Group>
                 </Form>}
       </FormContainer>
+
     </React.Fragment>
   );
 };
 
-export default EditLeadPasteTolerancesScreen;
+export default EditPlateGratingsTolerancesScreen;

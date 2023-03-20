@@ -86,7 +86,7 @@ export const listPlateGratingsTolerancesById = id => async dispatch => {
   }
 };
 
-export const updatePlateGratingsTolerancesById = tolerances => async dispatch => {
+export const updatePlateGratingsTolerancesById = id => async dispatch => {
   try {
     dispatch ({type: PLATE_GRATINGS_TOLERANCES_BY_ID_UPDATE_REQUEST});
 
@@ -97,8 +97,7 @@ export const updatePlateGratingsTolerancesById = tolerances => async dispatch =>
     };
 
     const {data} = await axios.put (
-      `http://localhost:5000/api/settings/plate_gratings_tolerances/${tolerances.id}`,
-      tolerances,
+      `http://localhost:5000/api/settings/plate_gratings_tolerances/${id}`,
       config
     );
 
@@ -150,8 +149,7 @@ export const updateLeadPasteTolerancesById = tolerances => async dispatch => {
 
     const {data} = await axios.put (
       `http://localhost:5000/api/settings/lead_paste_tolerances/${tolerances.id}`,
-      tolerances,
-      config
+      tolerances.config
     );
 
     dispatch ({

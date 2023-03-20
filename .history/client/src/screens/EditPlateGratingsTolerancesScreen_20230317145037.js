@@ -14,14 +14,14 @@ import {
 } from '../redux/constants/tolerancesConstants';
 
 const EditPlateGratingsTolerancesScreen = () => {
-  const [data, setData] = useState ({
+  const [tolerancesData, setTolerancesData] = useState ({
     plateGridName: '',
-    cardNumber: 0,
-    nominal: 0,
-    nominalMin1: 0,
-    nominalMin2: 0,
-    nominalMax1: 0,
-    nominalMax2: 0,
+    cardNumber: '',
+    nominal: '',
+    nominalMin1: '',
+    nominalMin2: '',
+    nominalMax1: '',
+    nominalMax2: '',
   });
 
   const dispatch = useDispatch ();
@@ -58,7 +58,7 @@ const EditPlateGratingsTolerancesScreen = () => {
   useEffect (
     () => {
       if (tolerancesById) {
-        setData ({
+        setTolerancesData ({
           plateGridName: tolerancesById.plateGridName,
           cardNumber: tolerancesById.cardNumber,
           nominal: tolerancesById.nominal,
@@ -72,15 +72,24 @@ const EditPlateGratingsTolerancesScreen = () => {
     [tolerancesById]
   );
 
-  const handleChange = e => {
-    setData ({
-      [e.target.name]: e.target.value,
-    });
-  };
+  console.log (tolerancesById);
+
+  // const handleChange = e => {
+  //   setTolerancesData (prevState => {
+  //     return {
+  //       ...prevState,
+  //       [e.target.name]: e.target.value,
+  //     };
+  //   });
+  // };
 
   const submitHandler = e => {
     e.preventDefault ();
-    dispatch (updatePlateGratingsTolerancesById (data));
+    dispatch (
+      updatePlateGratingsTolerancesById ({
+        tolerancesData,
+      })
+    );
 
     if (successUpdate) {
       dispatch ({type: PLATE_GRATINGS_TOLERANCES_BY_ID_UPDATE_RESET});
@@ -111,8 +120,11 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="text"
                       placeholder="Име на плоча / решетка"
-                      value={data.plateGridName}
-                      onChange={handleChange}
+                      value={tolerancesData.plateGridName}
+                      onChange={e =>
+                        setTolerancesData (...tolerancesData, {
+                          plateGridName: e.target.value,
+                        })}
                     />
                   </Form.Group>
 
@@ -121,7 +133,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Карта №"
-                      value={data.cardNumber}
+                      value={tolerancesData.cardNumber}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -131,7 +143,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал"
-                      value={data.nominal}
+                      value={tolerancesData.nominal}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -141,7 +153,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (-)"
-                      value={data.nominalMin1}
+                      value={tolerancesData.nominalMin1}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -151,7 +163,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (--)"
-                      value={data.nominalMin2}
+                      value={tolerancesData.nominalMin2}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -161,7 +173,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (+)"
-                      value={data.nominalMax1}
+                      value={tolerancesData.nominalMax1}
                       onChange={handleChange}
                     />
                   </Form.Group>
@@ -171,7 +183,7 @@ const EditPlateGratingsTolerancesScreen = () => {
                     <Form.Control
                       type="number"
                       placeholder="Номинал (++)"
-                      value={data.nominalMax2}
+                      value={tolerancesData.nominalMax2}
                       onChange={handleChange}
                     />
                   </Form.Group>

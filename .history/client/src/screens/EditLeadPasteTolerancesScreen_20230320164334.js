@@ -73,6 +73,7 @@ const EditLeadPasteTolerancesScreen = () => {
   );
 
   console.log (tolerancesById);
+  console.log (data);
 
   const handleChange = e => {
     setData ({

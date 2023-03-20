@@ -17,11 +17,11 @@ const EditLeadPasteTolerancesScreen = () => {
   const [data, setData] = useState ({
     leadPasteTolerancesById: '',
     cardNumber: 0,
-    nominalDensity: 0.0,
-    nominalDensityMin1: 0.0,
-    nominalDensityMin2: 0.0,
-    nominalDensityMax1: 0.0,
-    nominalDensityMax2: 0.0,
+    nominalDensity: 0,
+    nominalDensityMin1: 0,
+    nominalDensityMin2: 0,
+    nominalDensityMax1: 0,
+    nominalDensityMax2: 0,
   });
 
   const dispatch = useDispatch ();
