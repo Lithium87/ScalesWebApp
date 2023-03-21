@@ -59,7 +59,6 @@ const EditPlateGratingsTolerancesScreen = () => {
     () => {
       if (tolerancesById) {
         setData ({
-          id: tolerancesById.id,
           plateGridName: tolerancesById.plateGridName,
           cardNumber: tolerancesById.cardNumber,
           nominal: tolerancesById.nominal,
@@ -74,16 +73,14 @@ const EditPlateGratingsTolerancesScreen = () => {
   );
 
   const handleChange = e => {
-    console.log (e.target.name);
     setData ({
-      ...data,
       [e.target.name]: e.target.value,
     });
   };
 
   const submitHandler = e => {
     e.preventDefault ();
-    dispatch (updatePlateGratingsTolerancesById (data));
+    dispatch (updatePlateGratingsTolerancesById (id, data));
 
     if (successUpdate) {
       dispatch ({type: PLATE_GRATINGS_TOLERANCES_BY_ID_UPDATE_RESET});
@@ -112,7 +109,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="plateGridName">
                     <Form.Label>Име на плоча / решетка</Form.Label>
                     <Form.Control
-                      name="plateGridName"
                       type="text"
                       placeholder="Име на плоча / решетка"
                       value={data.plateGridName || ''}
@@ -123,7 +119,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="cardNumber">
                     <Form.Label>Карта №</Form.Label>
                     <Form.Control
-                      name="cardNumber"
                       type="number"
                       placeholder="Карта №"
                       value={data.cardNumber || 0}
@@ -134,7 +129,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="nominal">
                     <Form.Label>Номинал</Form.Label>
                     <Form.Control
-                      name="nominal"
                       type="number"
                       placeholder="Номинал"
                       value={data.nominal || 0}
@@ -145,7 +139,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="nominalMin1">
                     <Form.Label>Номинал (-)</Form.Label>
                     <Form.Control
-                      name="nominalMin1"
                       type="number"
                       placeholder="Номинал (-)"
                       value={data.nominalMin1 || 0}
@@ -156,7 +149,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="nominalMin2">
                     <Form.Label>Номинал (--)</Form.Label>
                     <Form.Control
-                      name="nominalMin2"
                       type="number"
                       placeholder="Номинал (--)"
                       value={data.nominalMin2 || 0}
@@ -167,7 +159,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="nominalMax1">
                     <Form.Label>Номинал (+)</Form.Label>
                     <Form.Control
-                      name="nominalMax1"
                       type="number"
                       placeholder="Номинал (+)"
                       value={data.nominalMax1 || 0}
@@ -178,7 +169,6 @@ const EditPlateGratingsTolerancesScreen = () => {
                   <Form.Group controlId="nominalMax2">
                     <Form.Label>Номинал (++)</Form.Label>
                     <Form.Control
-                      name="nominalMax2"
                       type="number"
                       placeholder="Номинал (++)"
                       value={data.nominalMax2 || 0}
