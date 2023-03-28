@@ -15,13 +15,7 @@ exports.getAllOperators = asyncHandler (async (req, res) => {
 
 exports.getOperatorById = asyncHandler (async (req, res) => {
   const operatorsById = await db.Operator.findOne ({
-    attributes: [
-      'id',
-      'operatorName',
-      'operatorCardNumber',
-      'zvenoId',
-      'zvenoName',
-    ],
+    attributes: ['id', 'operatorName', 'operatorCardNumber', 'zvenoName'],
     where: {
       id: req.params.id,
     },
@@ -40,7 +34,6 @@ exports.updateOperatorById = asyncHandler (async (req, res) => {
     {
       operatorName: req.body.operatorName,
       operatorCardNumber: req.body.operatorCardNumber,
-      zvenoId: req.body.zvenoId,
       zvenoName: req.body.zvenoName,
     },
     {
