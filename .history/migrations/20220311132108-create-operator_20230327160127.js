@@ -17,19 +17,18 @@ module.exports = {
           max: 255,
         },
       },
+      zvenoName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          max: 255,
+        },
+      },
       operatorCardNumber: {
         type: Sequelize.INTEGER,
         unique: true,
         allowNull: false,
         defaultValue: 0,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
     });
   },

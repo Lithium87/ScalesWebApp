@@ -14,7 +14,6 @@ import EditLeadPasteTolerancesScreen
 import LeadPasteTolerancesScreen
   from './screens/options/tolerances/LeadPasteTolerancesScreen';
 import OperatorsScreen from './screens/options/operators/OperatorsScreen';
-import EditOperatorsScreen from './screens/EditOperatorsScreen';
 import PastingPassChangeScreen
   from './screens/options/passwords/PastingPassChangeScreen';
 import FoundryPassChangeScreen
@@ -59,11 +58,21 @@ const App = () => {
               path="/settings/operators"
               component={OperatorsScreen}
             />
+            {/* <Route
+              exact
+              path="/settings/plate_operators"
+              component={PlateOperatorsScreen}
+            />
             <Route
               exact
-              path="/settings/operators/:id"
-              component={EditOperatorsScreen}
+              path="/settings/gratings_operators"
+              component={GratingsOperatorsScreen}
             />
+            <Route
+              exact
+              path="/settings/lead_paste_operator"
+              component={LeadPasteOperatorsScreen}
+            /> */}
             <Route
               exact
               path="/settings/pasting_industrial_unit_password_change"

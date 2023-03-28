@@ -30,6 +30,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 0,
       },
+      zvenoName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          max: 255,
+        },
+      },
       zvenoId: {
         type: DataTypes.INTEGER,
       },

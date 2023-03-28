@@ -25,16 +25,8 @@ const Header = () => {
                 </NavDropdown.Item>
                 <hr />
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/settings/plate_operators">
-                  Оператори плочи
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/settings/gratings_operators">
-                  Оператори решетки
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/settings/lead_paste_operator">
-                  Оператори - оловна паста
+                <NavDropdown.Item href="/settings/operators">
+                  Оператори
                 </NavDropdown.Item>
                 <hr />
                 <NavDropdown.Divider />

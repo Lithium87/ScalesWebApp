@@ -17,6 +17,13 @@ module.exports = {
           max: 255,
         },
       },
+      zvenoName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          max: 255,
+        },
+      },
       operatorCardNumber: {
         type: Sequelize.INTEGER,
         unique: true,
