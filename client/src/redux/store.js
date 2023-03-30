@@ -7,7 +7,11 @@ import {
   filteredMeasurementsPerScaleReducer,
   allMeasurementsReducer,
 } from './reducers/measurementsReducer';
-import {listOperatorsReducer} from './reducers/operatorReducer';
+import {
+  listOperatorsReducer,
+  operatorByIdReducer,
+  operatorByIdUpdateReducer,
+} from './reducers/operatorReducer';
 import {
   allPlateGratingsTolerancesReducer,
   allLeadPasteTolerancesReducer,
@@ -23,6 +27,8 @@ const rootReducer = combineReducers ({
   measurementsPerScale: measurementsPerScaleReducer,
   filteredMeasurementsPerScale: filteredMeasurementsPerScaleReducer,
   operatorsList: listOperatorsReducer,
+  operatorById: operatorByIdReducer,
+  operatorByIdUpdate: operatorByIdUpdateReducer,
   allPlateGratingsTolerances: allPlateGratingsTolerancesReducer,
   allLeadPasteTolerances: allLeadPasteTolerancesReducer,
   plateGratingsTolerancesById: plateGratingsTolerancesByIdReducer,

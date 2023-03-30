@@ -7,10 +7,18 @@ import {
   filteredMeasurementsPerScaleReducer,
   allMeasurementsReducer,
 } from './reducers/measurementsReducer';
-import {listOperatorsReducer} from './reducers/operatorReducer';
+import {
+  listOperatorsReducer,
+  operatorByIdReducer,
+  operatorByIdUpdateReducer,
+} from './reducers/operatorReducer';
 import {
   allPlateGratingsTolerancesReducer,
   allLeadPasteTolerancesReducer,
+  plateGratingsTolerancesByIdReducer,
+  plateGratingsTolerancesByIdUpdateReducer,
+  leadPasteTolerancesByIdReducer,
+  leadPasteTolerancesByIdUpdateReducer,
 } from './reducers/tolerancesReducer';
 
 const rootReducer = combineReducers ({
@@ -19,8 +27,14 @@ const rootReducer = combineReducers ({
   measurementsPerScale: measurementsPerScaleReducer,
   filteredMeasurementsPerScale: filteredMeasurementsPerScaleReducer,
   operatorsList: listOperatorsReducer,
+  operatorById: operatorByIdReducer,
+  operatorByIdUpdate: operatorByIdUpdateReducer,
   allPlateGratingsTolerances: allPlateGratingsTolerancesReducer,
   allLeadPasteTolerances: allLeadPasteTolerancesReducer,
+  plateGratingsTolerancesById: plateGratingsTolerancesByIdReducer,
+  plateGratingsTolerancesByIdUpdate: plateGratingsTolerancesByIdUpdateReducer,
+  leadPasteTolerancesById: leadPasteTolerancesByIdReducer,
+  leadPasteTolerancesByIdUpdate: leadPasteTolerancesByIdUpdateReducer,
 });
 
 const store = createStore (

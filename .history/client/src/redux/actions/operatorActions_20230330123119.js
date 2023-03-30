@@ -68,17 +68,5 @@ export const updateOperatorById = operator => async dispatch => {
       operator,
       config
     );
-
-    dispatch ({
-      type: OPERATOR_BY_ID_UPDATE_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    dispatch ({
-      type: OPERATOR_BY_ID_UPDATE_FAIL,
-      payload: error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message,
-    });
-  }
+  } catch (error) {}
 };
