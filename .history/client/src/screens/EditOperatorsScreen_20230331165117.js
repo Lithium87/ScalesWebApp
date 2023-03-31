@@ -127,7 +127,6 @@ const EditOperatorsScreen = () => {
 
                   <Form.Group>
                     <Button
-                      type="submit"
                       className="shadow rounded btn btn-secondary btn-sm m-3"
                       onClick={handleSubmit}
                     >

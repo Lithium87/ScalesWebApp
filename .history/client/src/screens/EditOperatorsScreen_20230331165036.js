@@ -77,7 +77,7 @@ const EditOperatorsScreen = () => {
   return (
     <React.Fragment>
       <Link
-        to="/settings/operators"
+        to="/settings/operatos"
         className="shadow rounded btn btn-secondary btn-sm m-3"
       >
         Обратно към таблицата с оператори
@@ -127,7 +127,6 @@ const EditOperatorsScreen = () => {
 
                   <Form.Group>
                     <Button
-                      type="submit"
                       className="shadow rounded btn btn-secondary btn-sm m-3"
                       onClick={handleSubmit}
                     >
