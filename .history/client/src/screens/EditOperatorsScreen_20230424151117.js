@@ -8,6 +8,7 @@ import FormContainer from '../components/FormContainer';
 import {
   listOperatorById,
   updateOperatorById,
+  createNewOperator,
 } from '../redux/actions/operatorActions';
 import {
   OPERATOR_BY_ID_UPDATE_RESET,
@@ -15,6 +16,7 @@ import {
 
 const EditOperatorsScreen = () => {
   const [data, setData] = useState ({
+    id: undefined,
     operatorName: '',
     operatorCardNumber: 0,
     zvenoName: '',

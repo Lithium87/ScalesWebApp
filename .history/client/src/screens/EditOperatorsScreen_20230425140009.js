@@ -15,6 +15,7 @@ import {
 
 const EditOperatorsScreen = () => {
   const [data, setData] = useState ({
+    id: undefined,
     operatorName: '',
     operatorCardNumber: 0,
     zvenoName: '',

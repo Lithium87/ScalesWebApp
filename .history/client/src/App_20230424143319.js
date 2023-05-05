@@ -15,7 +15,6 @@ import LeadPasteTolerancesScreen
   from './screens/options/tolerances/LeadPasteTolerancesScreen';
 import OperatorsScreen from './screens/options/operators/OperatorsScreen';
 import EditOperatorsScreen from './screens/EditOperatorsScreen';
-import AddNewOperatorScreen from './screens/AddNewOperatorScreen';
 import PastingPassChangeScreen
   from './screens/options/passwords/PastingPassChangeScreen';
 import FoundryPassChangeScreen
@@ -64,11 +63,6 @@ const App = () => {
               exact
               path="/settings/operators/:id"
               component={EditOperatorsScreen}
-            />
-            <Route
-              exact
-              path="/settings/operators/:id/addNewOperator"
-              component={AddNewOperatorScreen}
             />
             <Route
               exact

@@ -18,13 +18,13 @@ const OperatorsScreen = () => {
   const operatorsList = useSelector (state => state.operatorsList);
   const {loading, error, operators} = operatorsList;
 
-  // const operatorCreate = useSelector (state => state.operatorCreate);
-  // const {
-  //   loading: loadingCreate,
-  //   error: errorCreate,
-  //   success: successCreate,
-  //   operator: createdOperator,
-  // } = operatorCreate;
+  const operatorCreate = useSelector (state => state.operatorCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    operator: createdOperator,
+  } = operatorCreate;
 
   useEffect (
     () => {
@@ -35,16 +35,16 @@ const OperatorsScreen = () => {
 
   console.log (operators);
 
-  // const createOperatorHandler = () => {
-  //   dispatch (createOperator ());
-  // };
+  const createOperatorHandler = () => {
+    dispatch (createOperator ());
+  };
 
   return (
     <React.Fragment>
       <h3>Оператори</h3>
 
-      {/* {loadingCreate && <Loader />}
-      {errorCreate && <Message variant="danger">{errorCreate}</Message>} */}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading
         ? <Loader />
         : error
@@ -88,7 +88,14 @@ const OperatorsScreen = () => {
                 </tbody>
               </Table>}
 
-      <LinkContainer to={`../settings/operators/undefined/addNewOperator`}>
+      {/* <Button
+        className="shadow rounded btn btn-secondary btn-sm m-3"
+        onClick={createOperatorHandler}
+      >
+        Добави нов оператор
+      </Button> */}
+
+      <LinkContainer to={`../settings/operators/undefined`}>
         <Button className="shadow rounded btn btn-secondary btn-sm m3">
           Добави нов оператор
         </Button>

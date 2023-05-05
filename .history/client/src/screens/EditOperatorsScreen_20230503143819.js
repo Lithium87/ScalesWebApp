@@ -12,6 +12,7 @@ import {
 import {
   OPERATOR_BY_ID_UPDATE_RESET,
 } from '../redux/constants/operatorConstants';
+import {listZvena} from '../redux/actions/zvenaActions';
 
 const EditOperatorsScreen = () => {
   const [data, setData] = useState ({
@@ -29,6 +30,9 @@ const EditOperatorsScreen = () => {
   const operatorById = useSelector (state => state.operatorById);
   const {loading, error, operatorById: operator} = operatorById;
 
+  const zvenaList = useSelector (state => state.zvenaList);
+  const {zvenaList: zvena} = zvenaList;
+
   const operatorByIdUpdate = useSelector (state => state.operatorByIdUpdate);
   const {
     loading: loadingUpdate,
@@ -39,9 +43,13 @@ const EditOperatorsScreen = () => {
   useEffect (
     () => {
       dispatch (listOperatorById (id));
+
+      dispatch (listZvena ());
     },
     [dispatch, id]
   );
+
+  console.log (zvena);
 
   useEffect (
     () => {

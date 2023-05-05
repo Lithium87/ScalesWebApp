@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Table} from 'react-bootstrap';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
+import EditOperatorsScreen from '../../EditOperatorsScreen';
 import {
   listOperators,
   createOperator,
@@ -15,16 +17,18 @@ import {
 const OperatorsScreen = () => {
   const dispatch = useDispatch ();
 
+  const history = useHistory ();
+
   const operatorsList = useSelector (state => state.operatorsList);
   const {loading, error, operators} = operatorsList;
 
-  // const operatorCreate = useSelector (state => state.operatorCreate);
-  // const {
-  //   loading: loadingCreate,
-  //   error: errorCreate,
-  //   success: successCreate,
-  //   operator: createdOperator,
-  // } = operatorCreate;
+  const operatorCreate = useSelector (state => state.operatorCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    operator: createdOperator,
+  } = operatorCreate;
 
   useEffect (
     () => {
@@ -33,18 +37,32 @@ const OperatorsScreen = () => {
     [dispatch]
   );
 
+  // useEffect (
+  //   () => {
+  //     dispatch ({type: CREATE_OPERATOR_RESET});
+
+  //     if (successCreate) {
+  //       history.push (`../settings/operators/${createdOperator.id}`);
+  //     } else {
+  //       dispatch (listOperators ());
+  //     }
+  //   },
+  //   [dispatch, successCreate, history, createdOperator]
+  // );
+
   console.log (operators);
 
-  // const createOperatorHandler = () => {
-  //   dispatch (createOperator ());
-  // };
+  const createOperatorHandler = () => {
+    <EditOperatorsScreen />;
+    // dispatch (createOperator ());
+  };
 
   return (
     <React.Fragment>
       <h3>Оператори</h3>
 
-      {/* {loadingCreate && <Loader />}
-      {errorCreate && <Message variant="danger">{errorCreate}</Message>} */}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading
         ? <Loader />
         : error
@@ -88,11 +106,18 @@ const OperatorsScreen = () => {
                 </tbody>
               </Table>}
 
-      <LinkContainer to={`../settings/operators/undefined/addNewOperator`}>
-        <Button className="shadow rounded btn btn-secondary btn-sm m3">
+      <Button
+        className="shadow rounded btn btn-secondary btn-sm m-3"
+        onClick={createOperatorHandler}
+      >
+        Добави нов оператор
+      </Button>
+
+      {/* <LinkContainer to={`../settings/operators/${createdOperator.id}`}>
+        <Button className='shadow rounded btn btn-secondary btn-sm m3'>
           Добави нов оператор
         </Button>
-      </LinkContainer>
+      </LinkContainer> */}
     </React.Fragment>
   );
 };

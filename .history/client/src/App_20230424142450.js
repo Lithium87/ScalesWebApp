@@ -62,13 +62,13 @@ const App = () => {
             />
             <Route
               exact
-              path="/settings/operators/:id"
-              component={EditOperatorsScreen}
+              path="../settings/operators/addNew"
+              component={AddNewOperatorScreen}
             />
             <Route
               exact
-              path="/settings/operators/:id/addNewOperator"
-              component={AddNewOperatorScreen}
+              path="/settings/operators/:id"
+              component={EditOperatorsScreen}
             />
             <Route
               exact
