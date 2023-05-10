@@ -12,6 +12,7 @@ import {
   CREATE_OPERATOR_REQUEST,
   CREATE_OPERATOR_SUCCESS,
   CREATE_OPERATOR_FAIL,
+  CREATE_OPERATOR_RESET,
 } from '../constants/operatorConstants';
 
 export const listOperatorsReducer = (state = {operators: []}, action) => {
@@ -88,18 +89,15 @@ export const operatorByIdUpdateReducer = (
   }
 };
 
-export const newOperatorReducer = (state = {newOperator: {}}, action) => {
+export const operatorCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_OPERATOR_REQUEST:
-      return {
-        loading: true,
-        newOperator: {},
-      };
+      return {loading: true};
     case CREATE_OPERATOR_SUCCESS:
       return {
         loading: false,
         success: true,
-        newOperator: action.payload,
+        operator: action.payload,
       };
     case CREATE_OPERATOR_FAIL:
       return {

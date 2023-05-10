@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import FormContainer from '../components/FormContainer';
 import {createOperator} from '../redux/actions/operatorActions';
+import {CREATE_OPERATOR_RESET} from '../redux/constants/operatorConstants';
 import {listZvena} from '../redux/actions/zvenaActions';
 
 const AddNewOperatorScreen = () => {
@@ -13,10 +14,11 @@ const AddNewOperatorScreen = () => {
     operatorName: '',
     operatorCardNumber: 0,
     zvenoName: '',
-    zvenoId: 1,
   });
 
   const dispatch = useDispatch ();
+
+  const history = useHistory ();
 
   const zvenaList = useSelector (state => state.zvenaList);
 
@@ -34,13 +36,10 @@ const AddNewOperatorScreen = () => {
 
     dispatch (createOperator (data));
 
-    setData ({
-      operatorName: '',
-      operatorCardNumber: 0,
-      zvenoName: '',
-      zvenoId: 1,
-    });
-
+    if (success) {
+      dispatch ({type: CREATE_OPERATOR_RESET});
+      history.push ('/settings/operators');
+    }
     console.log (data);
   };
 
@@ -98,13 +97,11 @@ const AddNewOperatorScreen = () => {
               value={data.zvenoName || ''}
               onChange={handleChange}
             >
-              <option>--Избери звено--</option>
-              {zvenaList.zvena &&
-                zvenaList.zvena.map (zveno => (
-                  <option key={zveno.id} value={zveno.zvenoName}>
-                    {zveno.zvenoName}
-                  </option>
-                ))}
+              {zvenaList.zvena.map (zveno => (
+                <option key={zveno.id} value={zveno.zvenoName}>
+                  {zveno.zvenoName}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
 

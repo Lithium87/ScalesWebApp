@@ -86,7 +86,7 @@ export const updateOperatorById = operator => async dispatch => {
   }
 };
 
-export const createNewOperator = () => async dispatch => {
+export const createOperator = reqBody => async dispatch => {
   try {
     dispatch ({type: CREATE_OPERATOR_REQUEST});
 
@@ -98,7 +98,7 @@ export const createNewOperator = () => async dispatch => {
 
     const {data} = await axios.post (
       'http://localhost:5000/api/operators',
-      {},
+      reqBody,
       config
     );
 

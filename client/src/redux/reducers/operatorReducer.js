@@ -104,8 +104,6 @@ export const operatorCreateReducer = (state = {}, action) => {
         loading: false,
         error: action.payload,
       };
-    case CREATE_OPERATOR_RESET:
-      return {};
     default:
       return state;
   }

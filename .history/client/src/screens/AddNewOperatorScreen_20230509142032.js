@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import Loader from '../components/Loader';
@@ -17,6 +17,8 @@ const AddNewOperatorScreen = () => {
   });
 
   const dispatch = useDispatch ();
+
+  const history = useHistory ();
 
   const zvenaList = useSelector (state => state.zvenaList);
 

@@ -8,8 +8,8 @@ import FormContainer from '../components/FormContainer';
 import {
   listOperatorById,
   updateOperatorById,
-  createNewOperator,
 } from '../redux/actions/operatorActions';
+import {listZvena} from '../redux/actions/zvenaActions';
 import {
   OPERATOR_BY_ID_UPDATE_RESET,
 } from '../redux/constants/operatorConstants';
@@ -19,6 +19,7 @@ const EditOperatorsScreen = () => {
     operatorName: '',
     operatorCardNumber: 0,
     zvenoName: '',
+    zvenoId: 1,
   });
 
   const dispatch = useDispatch ();
@@ -30,6 +31,8 @@ const EditOperatorsScreen = () => {
   const operatorById = useSelector (state => state.operatorById);
   const {loading, error, operatorById: operator} = operatorById;
 
+  const zvenaList = useSelector (state => state.zvenaList);
+
   const operatorByIdUpdate = useSelector (state => state.operatorByIdUpdate);
   const {
     loading: loadingUpdate,
@@ -40,6 +43,8 @@ const EditOperatorsScreen = () => {
   useEffect (
     () => {
       dispatch (listOperatorById (id));
+
+      dispatch (listZvena ());
     },
     [dispatch, id]
   );
@@ -51,11 +56,11 @@ const EditOperatorsScreen = () => {
           id: operator.id,
           operatorName: operator.operatorName,
           operatorCardNumber: operator.operatorCardNumber,
-          zvenoName: operator.zvenoName,
+          zvenoName: zvenaList.zvena.zvenoName,
         });
       }
     },
-    [operator]
+    [operator, zvenaList]
   );
 
   const handleChange = e => {
@@ -69,10 +74,15 @@ const EditOperatorsScreen = () => {
     e.preventDefault ();
     dispatch (updateOperatorById (data));
 
-    if (successUpdate) {
-      dispatch ({type: OPERATOR_BY_ID_UPDATE_RESET});
-      history.push ('/settings/operators');
-    }
+    setData ({
+      operatorName: '',
+      operatorCardNumber: 0,
+      zvenoName: '',
+      zvenoId: 1,
+    });
+    history.push ('/settings/operators');
+
+    console.log (data);
   };
 
   return (
@@ -118,13 +128,31 @@ const EditOperatorsScreen = () => {
                   <Form.Group controlId="zvenoName">
                     <Form.Label>Звено</Form.Label>
                     <Form.Control
+                      as="select"
+                      name="zvenoName"
+                      value={data.zvenoName || ''}
+                      onChange={handleChange}
+                    >
+                      <option>--Избери звено--</option>
+                      {zvenaList.zvena &&
+                        zvenaList.zvena.map (zveno => (
+                          <option key={zveno.id} value={zveno.zvenoName}>
+                            {zveno.zvenoName}
+                          </option>
+                        ))}
+                    </Form.Control>
+                  </Form.Group>
+
+                  {/* <Form.Group controlId="zvenoName">
+                    <Form.Label>Звено</Form.Label>
+                    <Form.Control
                       name="zvenoName"
                       type="text"
                       placeholder="Звено"
                       value={data.zvenoName || ''}
                       onChange={handleChange}
                     />
-                  </Form.Group>
+                  </Form.Group> */}
 
                   <Form.Group>
                     <Button
