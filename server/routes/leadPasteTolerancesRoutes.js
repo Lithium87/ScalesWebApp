@@ -3,11 +3,15 @@ const {
   getLeadPasteTolerances,
   getLeadPasteTolerancesById,
   updateLeadPasteTolerancesById,
+  createLeadPasteTolerances,
 } = require ('../controllers/leadPasteTolerancesController');
 
 const router = express.Router ();
 
-router.route ('/').get (getLeadPasteTolerances);
+router
+  .route ('/')
+  .get (getLeadPasteTolerances)
+  .post (createLeadPasteTolerances);
 
 router
   .route ('/:id')

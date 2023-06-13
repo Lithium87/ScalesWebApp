@@ -15,7 +15,7 @@ import {
 
 const EditLeadPasteTolerancesScreen = () => {
   const [data, setData] = useState ({
-    leadPasteTolerancesById: '',
+    leadPasteName: '',
     cardNumber: 0,
     nominalDensity: 0.0,
     nominalDensityMin1: 0.0,

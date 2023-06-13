@@ -83,8 +83,10 @@ const LeadPasteTolerancesScreen = () => {
                 </tbody>
               </Table>}
 
-      <LinkContainer to={'../settings/lead_paste_tolerances/0'}>
-        <Button className="shadow rounded btn btn-secondary btn-sm m-3">
+      <LinkContainer
+        to={`../settings/lead_paste_tollerances/undefined/addNewTolerances`}
+      >
+        <Button className="shadow rounded btn btn-secondary btn-sm m3">
           Добави нови допуски
         </Button>
       </LinkContainer>

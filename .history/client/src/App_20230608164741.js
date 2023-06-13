@@ -15,8 +15,6 @@ import EditLeadPasteTolerancesScreen
   from './screens/EditLeadPasteTolerancesScreen';
 import LeadPasteTolerancesScreen
   from './screens/options/tolerances/LeadPasteTolerancesScreen';
-import AddNewLeadPasteTolerancesScreen
-  from './screens/AddNewLeadPasteTolerancesScreen';
 import OperatorsScreen from './screens/options/operators/OperatorsScreen';
 import EditOperatorsScreen from './screens/EditOperatorsScreen';
 import AddNewOperatorScreen from './screens/AddNewOperatorScreen';
@@ -63,11 +61,6 @@ const App = () => {
               exact
               path="/settings/lead_paste_tolerances"
               component={LeadPasteTolerancesScreen}
-            />
-            <Route
-              exact
-              path="/settings/lead_paste_tolerances/:id/addNewTolerances"
-              component={AddNewLeadPasteTolerancesScreen}
             />
             <Route
               exact

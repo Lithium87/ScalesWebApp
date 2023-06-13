@@ -67,7 +67,6 @@ const App = () => {
             <Route
               exact
               path="/settings/lead_paste_tolerances/:id/addNewTolerances"
-              component={AddNewLeadPasteTolerancesScreen}
             />
             <Route
               exact
