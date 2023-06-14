@@ -25,6 +25,10 @@ const AddNewLeadPasteTolerancesScreen = () => {
   );
   const {loading, error} = newLeadPasteTolerances;
 
+  const validateForm = () => {
+    console.log (data.leadPasteName);
+  };
+
   const handleChange = e => {
     setData ({
       ...data,
@@ -35,18 +39,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
   const handleSubmit = e => {
     e.preventDefault ();
 
-    if (
-      !data.leadPasteName ||
-      !data.cardNumber ||
-      !data.nominalDensity ||
-      !data.nominalDensityMin1 ||
-      !data.nominalDensityMin2 ||
-      !data.nominalDensityMax1 ||
-      !data.nominalDensityMax2
-    ) {
-      alert ('Всички полета са задължителни!');
-      return;
-    }
+    validateForm ();
 
     dispatch (createNewLeadPasteTolerances (data));
 

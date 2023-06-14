@@ -79,20 +79,6 @@ const EditPlateGratingsTolerancesScreen = () => {
 
   const submitHandler = e => {
     e.preventDefault ();
-
-    if (
-      !data.plateGridName ||
-      !data.cardNumber ||
-      !data.nominal ||
-      !data.nominalMin1 ||
-      !data.nominalMin2 ||
-      !data.nominalMax1 ||
-      !data.nominalMax2
-    ) {
-      alert ('Всички полета са задължителни!');
-      return;
-    }
-
     dispatch (updatePlateGratingsTolerancesById (data));
 
     setData ({

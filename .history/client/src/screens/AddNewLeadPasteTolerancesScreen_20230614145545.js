@@ -45,7 +45,6 @@ const AddNewLeadPasteTolerancesScreen = () => {
       !data.nominalDensityMax2
     ) {
       alert ('Всички полета са задължителни!');
-      return;
     }
 
     dispatch (createNewLeadPasteTolerances (data));

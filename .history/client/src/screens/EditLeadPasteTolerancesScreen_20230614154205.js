@@ -9,6 +9,9 @@ import {
   listLeadPasteTolerancesById,
   updateLeadPasteTolerancesById,
 } from '../redux/actions/tolerancesActions';
+import {
+  LEAD_PASTE_TOLERANCES_BY_ID_UPDATE_RESET,
+} from '../redux/constants/tolerancesConstants';
 
 const EditLeadPasteTolerancesScreen = () => {
   const [data, setData] = useState ({
@@ -42,6 +45,7 @@ const EditLeadPasteTolerancesScreen = () => {
   const {
     loading: loadingUpdate,
     error: errorUpdate,
+    success: successUpdate,
   } = leadPasteTolerancesByIdUpdate;
 
   useEffect (
@@ -81,19 +85,6 @@ const EditLeadPasteTolerancesScreen = () => {
 
   const submitHandler = e => {
     e.preventDefault ();
-
-    if (
-      !data.leadPasteName ||
-      !data.cardNumber ||
-      !data.nominalDensity ||
-      !data.nominalDensityMin1 ||
-      !data.nominalDensityMin2 ||
-      !data.nominalDensityMax1 ||
-      !data.nominalDensityMax2
-    ) {
-      alert ('Всички полета са задължителни!');
-      return;
-    }
 
     dispatch (updateLeadPasteTolerancesById (data));
 

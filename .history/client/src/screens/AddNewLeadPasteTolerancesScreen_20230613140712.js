@@ -36,16 +36,13 @@ const AddNewLeadPasteTolerancesScreen = () => {
     e.preventDefault ();
 
     if (
-      !data.leadPasteName ||
-      !data.cardNumber ||
-      !data.nominalDensity ||
-      !data.nominalDensityMin1 ||
-      !data.nominalDensityMin2 ||
-      !data.nominalDensityMax1 ||
-      !data.nominalDensityMax2
+      !leadPasteName ||
+      !cardNumber ||
+      !nominalDensity ||
+      !nominalDensityMin1 ||
+      !nominalDensityMin1 ||
+      !nominalDensityMax1
     ) {
-      alert ('Всички полета са задължителни!');
-      return;
     }
 
     dispatch (createNewLeadPasteTolerances (data));

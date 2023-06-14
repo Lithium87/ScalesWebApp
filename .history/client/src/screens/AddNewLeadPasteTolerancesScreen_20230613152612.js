@@ -17,6 +17,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
     nominalDensityMax1: 0.0,
     nominalDensityMax2: 0.0,
   });
+  const [validationError, setValidationError] = useState ('');
 
   const dispatch = useDispatch ();
 
@@ -24,6 +25,20 @@ const AddNewLeadPasteTolerancesScreen = () => {
     state => state.newLeadPasteTolerances
   );
   const {loading, error} = newLeadPasteTolerances;
+
+  const validateForm = data => {
+    if (
+      !data.leadPasteName ||
+      !data.cardNumber ||
+      !data.nominalDensity ||
+      !data.nominalDensityMin1 ||
+      !data.nominalDensityMin2 ||
+      !data.nominalDensityMax1 ||
+      !data.nominalDensityMax2
+    ) {
+      <Message variant="danget">Всички полета са задължителни!</Message>;
+    }
+  };
 
   const handleChange = e => {
     setData ({
@@ -34,19 +49,6 @@ const AddNewLeadPasteTolerancesScreen = () => {
 
   const handleSubmit = e => {
     e.preventDefault ();
-
-    if (
-      !data.leadPasteName ||
-      !data.cardNumber ||
-      !data.nominalDensity ||
-      !data.nominalDensityMin1 ||
-      !data.nominalDensityMin2 ||
-      !data.nominalDensityMax1 ||
-      !data.nominalDensityMax2
-    ) {
-      alert ('Всички полета са задължителни!');
-      return;
-    }
 
     dispatch (createNewLeadPasteTolerances (data));
 

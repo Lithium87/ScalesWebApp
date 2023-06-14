@@ -40,12 +40,11 @@ const AddNewLeadPasteTolerancesScreen = () => {
       !data.cardNumber ||
       !data.nominalDensity ||
       !data.nominalDensityMin1 ||
-      !data.nominalDensityMin2 ||
+      !data.nominalDensityMin1 ||
       !data.nominalDensityMax1 ||
       !data.nominalDensityMax2
     ) {
-      alert ('Всички полета са задължителни!');
-      return;
+      <p>All fields are required!</p>;
     }
 
     dispatch (createNewLeadPasteTolerances (data));

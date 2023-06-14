@@ -82,19 +82,6 @@ const EditLeadPasteTolerancesScreen = () => {
   const submitHandler = e => {
     e.preventDefault ();
 
-    if (
-      !data.leadPasteName ||
-      !data.cardNumber ||
-      !data.nominalDensity ||
-      !data.nominalDensityMin1 ||
-      !data.nominalDensityMin2 ||
-      !data.nominalDensityMax1 ||
-      !data.nominalDensityMax2
-    ) {
-      alert ('Всички полета са задължителни!');
-      return;
-    }
-
     dispatch (updateLeadPasteTolerancesById (data));
 
     setData ({

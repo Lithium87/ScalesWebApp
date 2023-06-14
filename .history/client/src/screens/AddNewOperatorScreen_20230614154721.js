@@ -34,7 +34,6 @@ const AddNewOperatorScreen = () => {
 
     if (!data.operatorName || !data.operatorCardNumber || !data.zvenoName) {
       alert ('Всички полета са задължителни!');
-      return;
     }
 
     dispatch (createOperator (data));

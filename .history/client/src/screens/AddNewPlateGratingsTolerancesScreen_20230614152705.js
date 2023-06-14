@@ -40,7 +40,6 @@ const AddNewPlateGratingsTolerancesScreen = () => {
       !data.nominalMax2
     ) {
       alert ('Всички полета са задължителни!');
-      return;
     }
 
     dispatch (createNewPlateGratingsTolerances (data));
