@@ -52,17 +52,22 @@ const AddNewLeadPasteTolerancesScreen = () => {
     }
     if (leadPasteName.length < 5) {
       messages.push (
-        'Името на оловната паста трябва да бъде дълго поне пет символа!'
+        'Името на оловната паста трябва да бъде дълго поне 5 символа!'
       );
     }
     if (!cardNumber) {
       messages.push ('Полето номер на карта е задължително!');
     }
     if (cardNumber <= 0) {
-      messages.push ('Номерът на карта трябва да бъде цяло положително число!');
+      messages.push ('Номрът на карта трябва да бъде цяло положително число!');
     }
     if (!nominalDensity) {
-      messages.push ('Номиналната плътност трябва да бъде посочена!');
+      messages.push ('Стойността на номиналната плътност е задължителна!');
+    }
+    if (nominalDensity <= 0) {
+      messages.push (
+        'Стойността на номиналната плътност трябва да бъде цяло положително число!'
+      );
     }
     if (
       !nominalDensityMin1 ||
@@ -71,7 +76,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
       !nominalDensityMax2
     ) {
       messages.push (
-        'Отклонението от номиналната плутност трябва да бъде посочено!'
+        'Отклонението от номиналната плътност трябва да бъде посочено!'
       );
     }
     if (
@@ -81,7 +86,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
       nominalDensityMax2 <= 0
     ) {
       messages.push (
-        'Отклонението от номиналната плътност трябва да бъде посочено!'
+        'Отклонението от номиналната плътност трябва да бъде цяло положително число!'
       );
     }
 
@@ -209,8 +214,8 @@ const AddNewLeadPasteTolerancesScreen = () => {
           </Form.Group>
         </Form>
         <br />
-        <div style={{color: 'red', fontWeight: 'bold'}}>
-          {validationMessages.length > 0 &&
+        <div>
+          {validationMessages.length &&
             <span>Моля попълнете формата както следва:</span>}
           <ul>
             {validationMessages.map (vm => <li key={vm}>{vm}</li>)}

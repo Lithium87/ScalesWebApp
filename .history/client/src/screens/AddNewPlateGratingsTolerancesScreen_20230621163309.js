@@ -85,13 +85,13 @@ const AddNewPlateGratingsTolerancesScreen = () => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault ();
-
     validateForm ();
 
-    if (!validationMessages) {
-      dispatch (createNewPlateGratingsTolerances (data));
+    if (validationMessages.length > 0) {
+      e.preventDefault ();
     }
+
+    dispatch (createNewPlateGratingsTolerances (data));
 
     setData ({
       plateGridName: '',

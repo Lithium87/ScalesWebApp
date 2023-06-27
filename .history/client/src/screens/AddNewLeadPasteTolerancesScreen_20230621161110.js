@@ -33,69 +33,10 @@ const AddNewLeadPasteTolerancesScreen = () => {
     });
   };
 
-  const validateForm = () => {
-    const {
-      leadPasteName,
-      cardNumber,
-      nominalDensity,
-      nominalDensityMin1,
-      nominalDensityMin2,
-      nominalDensityMax1,
-      nominalDensityMax2,
-    } = data;
-
-    setValidationMessages ([]);
-    let messages = [];
-
-    if (!leadPasteName) {
-      messages.push ('Името на оловната паста е задължително!');
-    }
-    if (leadPasteName.length < 5) {
-      messages.push (
-        'Името на оловната паста трябва да бъде дълго поне пет символа!'
-      );
-    }
-    if (!cardNumber) {
-      messages.push ('Полето номер на карта е задължително!');
-    }
-    if (cardNumber <= 0) {
-      messages.push ('Номерът на карта трябва да бъде цяло положително число!');
-    }
-    if (!nominalDensity) {
-      messages.push ('Номиналната плътност трябва да бъде посочена!');
-    }
-    if (
-      !nominalDensityMin1 ||
-      !nominalDensityMin2 ||
-      !nominalDensityMax1 ||
-      !nominalDensityMax2
-    ) {
-      messages.push (
-        'Отклонението от номиналната плутност трябва да бъде посочено!'
-      );
-    }
-    if (
-      nominalDensityMin1 <= 0 ||
-      nominalDensityMin2 <= 0 ||
-      nominalDensityMax1 <= 0 ||
-      nominalDensityMax2 <= 0
-    ) {
-      messages.push (
-        'Отклонението от номиналната плътност трябва да бъде посочено!'
-      );
-    }
-
-    setValidationMessages (messages);
-  };
-
   const handleSubmit = e => {
     e.preventDefault ();
 
-    validateForm ();
-
-    if (!validationMessages) {
-      dispatch (createNewLeadPasteTolerances (data));
-    }
+    dispatch (createNewLeadPasteTolerances (data));
 
     setData ({
       leadPasteName: '',
@@ -208,14 +149,6 @@ const AddNewLeadPasteTolerancesScreen = () => {
             </Button>
           </Form.Group>
         </Form>
-        <br />
-        <div style={{color: 'red', fontWeight: 'bold'}}>
-          {validationMessages.length > 0 &&
-            <span>Моля попълнете формата както следва:</span>}
-          <ul>
-            {validationMessages.map (vm => <li key={vm}>{vm}</li>)}
-          </ul>
-        </div>
       </FormContainer>
     </React.Fragment>
   );

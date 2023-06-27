@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useHistory, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import Loader from '../components/Loader';
@@ -16,12 +16,10 @@ const EditOperatorsScreen = () => {
     operatorName: '',
     operatorCardNumber: 0,
     zvenoName: '',
-    zvenoId: 1,
+    zvenoId: null,
   });
 
   const dispatch = useDispatch ();
-
-  const history = useHistory ();
 
   const {id} = useParams ();
 
@@ -54,6 +52,7 @@ const EditOperatorsScreen = () => {
           operatorName: operator.operatorName,
           operatorCardNumber: operator.operatorCardNumber,
           zvenoName: zvenaList.zvena.zvenoName,
+          zvenoId: zvenaList.zvena.zvenoId,
         });
       }
     },
@@ -69,15 +68,20 @@ const EditOperatorsScreen = () => {
 
   const handleSubmit = e => {
     e.preventDefault ();
+
+    if (!data.operatorName || !data.operatorCardNumber || !data.zvenoName) {
+      alert ('Всички полета са задължителни!');
+      return;
+    }
+
     dispatch (updateOperatorById (data));
 
     setData ({
       operatorName: '',
       operatorCardNumber: 0,
       zvenoName: '',
-      zvenoId: 1,
+      zvenoId: null,
     });
-    history.push ('/settings/operators');
 
     console.log (data);
   };

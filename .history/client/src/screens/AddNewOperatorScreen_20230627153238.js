@@ -146,7 +146,7 @@ const AddNewOperatorScreen = () => {
           </Form.Group>
         </Form>
         <br />
-        <div style={{color: 'red', fontWeight: 'bold'}}>
+        <div>
           {validationMessages.length > 0 &&
             <span>Моля попълнете формата както следва:</span>}
           <ul>

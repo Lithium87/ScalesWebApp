@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import Loader from '../components/Loader';
@@ -22,6 +22,8 @@ const EditPlateGratingsTolerancesScreen = () => {
   });
 
   const dispatch = useDispatch ();
+
+  const history = useHistory ();
 
   const {id} = useParams ();
 
@@ -102,6 +104,8 @@ const EditPlateGratingsTolerancesScreen = () => {
       nominalMax1: 0,
       nominalMax2: 0,
     });
+
+    // history.push ('/settings/plate_gratings_tolerances');
   };
 
   return (

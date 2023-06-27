@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link, useParams, useHistory} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Form} from 'react-bootstrap';
 import Loader from '../components/Loader';
@@ -22,8 +22,6 @@ const EditOperatorsScreen = () => {
   const dispatch = useDispatch ();
 
   const {id} = useParams ();
-
-  const history = useHistory ();
 
   const operatorById = useSelector (state => state.operatorById);
   const {loading, error, operatorById: operator} = operatorById;
@@ -84,8 +82,6 @@ const EditOperatorsScreen = () => {
       zvenoName: '',
       zvenoId: null,
     });
-
-    history.push ('/settings/operators');
 
     console.log (data);
   };

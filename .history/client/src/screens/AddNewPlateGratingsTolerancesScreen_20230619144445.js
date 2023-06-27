@@ -85,13 +85,13 @@ const AddNewPlateGratingsTolerancesScreen = () => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault ();
-
     validateForm ();
 
-    if (!validationMessages) {
-      dispatch (createNewPlateGratingsTolerances (data));
+    if (validationMessages.length > 0) {
+      e.preventDefault ();
     }
+
+    dispatch (createNewPlateGratingsTolerances (data));
 
     setData ({
       plateGridName: '',
@@ -212,7 +212,7 @@ const AddNewPlateGratingsTolerancesScreen = () => {
           </Form.Group>
         </Form>
         <br />
-        <div style={{color: 'red', fontWeight: 'bold'}}>
+        <div>
           {validationMessages.length > 0 &&
             <span>Моля попълнете формата както следва:</span>}
           <ul>

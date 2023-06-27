@@ -48,11 +48,11 @@ const AddNewLeadPasteTolerancesScreen = () => {
     let messages = [];
 
     if (!leadPasteName) {
-      messages.push ('Името на оловната паста е задължително!');
+      messages.push ('Името на оловна паста е задължително!');
     }
     if (leadPasteName.length < 5) {
       messages.push (
-        'Името на оловната паста трябва да бъде дълго поне пет символа!'
+        'Името на оловна паста трябва да бъде дълго поне 5 символа!'
       );
     }
     if (!cardNumber) {
@@ -62,7 +62,12 @@ const AddNewLeadPasteTolerancesScreen = () => {
       messages.push ('Номерът на карта трябва да бъде цяло положително число!');
     }
     if (!nominalDensity) {
-      messages.push ('Номиналната плътност трябва да бъде посочена!');
+      messages.push ('Номиналната плътност е задължителна!');
+    }
+    if (nominalDensity <= 0) {
+      messages.push (
+        'Номиналната плътност трябва да бъде цяло положително число!'
+      );
     }
     if (
       !nominalDensityMin1 ||
@@ -71,7 +76,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
       !nominalDensityMax2
     ) {
       messages.push (
-        'Отклонението от номиналната плутност трябва да бъде посочено!'
+        'Отклонението от номиналната плътност трябва да бъде посочено!'
       );
     }
     if (
@@ -81,7 +86,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
       nominalDensityMax2 <= 0
     ) {
       messages.push (
-        'Отклонението от номиналната плътност трябва да бъде посочено!'
+        'Отклонението от номиналната плътност трябва да бъде цяло положително число!'
       );
     }
 
@@ -89,13 +94,13 @@ const AddNewLeadPasteTolerancesScreen = () => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault ();
-
     validateForm ();
 
-    if (!validationMessages) {
-      dispatch (createNewLeadPasteTolerances (data));
+    if (validationMessages.length > 0) {
+      e.preventDefault ();
     }
+
+    dispatch (createNewLeadPasteTolerances (data));
 
     setData ({
       leadPasteName: '',
@@ -209,7 +214,7 @@ const AddNewLeadPasteTolerancesScreen = () => {
           </Form.Group>
         </Form>
         <br />
-        <div style={{color: 'red', fontWeight: 'bold'}}>
+        <div>
           {validationMessages.length > 0 &&
             <span>Моля попълнете формата както следва:</span>}
           <ul>
