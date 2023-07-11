@@ -29,7 +29,11 @@ const EditOperatorsScreen = () => {
   const zvenaList = useSelector (state => state.zvenaList);
 
   const operatorByIdUpdate = useSelector (state => state.operatorByIdUpdate);
-  const {loading: loadingUpdate, error: errorUpdate} = operatorByIdUpdate;
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = operatorByIdUpdate;
 
   useEffect (
     () => {
@@ -78,6 +82,8 @@ const EditOperatorsScreen = () => {
       zvenoName: '',
       zvenoId: null,
     });
+
+    console.log (data);
   };
 
   return (
@@ -99,7 +105,6 @@ const EditOperatorsScreen = () => {
               ? <Message variant="danger">{error}</Message>
               : <OperatorsForm
                   data={data}
-                  zvenaList={zvenaList}
                   onSubmit={handleSubmit}
                   onChange={handleChange}
                   btnLabel="Редактирай"

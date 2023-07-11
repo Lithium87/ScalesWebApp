@@ -46,30 +46,37 @@ const AddNewPlateGratingsTolerancesScreen = () => {
 
     if (!plateGridName) {
       messages.push ('Името на плоча / решетка е задължително!');
+      return false;
     }
     if (plateGridName.length < 3) {
       messages.push (
         'Името на плоча / решетка трябва да бъде дълго поне три символа!'
       );
+      return false;
     }
     if (!cardNumber) {
       messages.push ('Полето номер на карта е задължително!');
+      return false;
     }
     if (cardNumber <= 0) {
       messages.push ('Номерът на карта трябва да бъде цяло положително число!');
+      return false;
     }
     if (!nominal) {
       messages.push ('Номиналната стойност е задължителна!');
+      return false;
     }
     if (nominal <= 0) {
       messages.push (
         'Номиналната стойност трябва да бъде цяло положително число!'
       );
+      return false;
     }
     if (!nominalMin1 || !nominalMin2 || !nominalMax1 || !nominalMax2) {
       messages.push (
         'Отклонението от номиналната стойност трябва да бъде посочено!'
       );
+      return false;
     }
     if (
       nominalMin1 <= 0 ||
@@ -80,9 +87,12 @@ const AddNewPlateGratingsTolerancesScreen = () => {
       messages.push (
         'Отклонението от номиналната стойнойст трябва да бъде цяло положително число!'
       );
+      return false;
     }
 
     setValidationMessages (messages);
+
+    return true;
   };
 
   const handleSubmit = e => {
@@ -90,9 +100,7 @@ const AddNewPlateGratingsTolerancesScreen = () => {
 
     validateForm ();
 
-    if (!validationMessages) {
-      dispatch (createNewPlateGratingsTolerances (data));
-    }
+    dispatch (createNewPlateGratingsTolerances (data));
 
     setData ({
       plateGridName: '',

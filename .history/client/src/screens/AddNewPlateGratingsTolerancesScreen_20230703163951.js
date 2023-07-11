@@ -90,9 +90,7 @@ const AddNewPlateGratingsTolerancesScreen = () => {
 
     validateForm ();
 
-    if (!validationMessages) {
-      dispatch (createNewPlateGratingsTolerances (data));
-    }
+    dispatch (createNewPlateGratingsTolerances (data));
 
     setData ({
       plateGridName: '',

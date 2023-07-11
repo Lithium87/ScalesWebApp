@@ -22,6 +22,7 @@ const AddNewPlateGratingsTolerancesScreen = () => {
     nominalMax2: 0,
   });
   const [validationMessages, setValidationMessages] = useState ([]);
+  const [isValid, setIsValid] = useState (false);
 
   const dispatch = useDispatch ();
 
@@ -85,14 +86,20 @@ const AddNewPlateGratingsTolerancesScreen = () => {
     setValidationMessages (messages);
   };
 
+  const showValidationMessages = () => {
+    <div>
+      {validationMessages.length > 0 &&
+        <span>Моля попълнете формата както следва:</span>}
+      <ul>
+        {validationMessages.map (vm => <li key={vm}>{vm}</li>)}
+      </ul>
+    </div>;
+  };
+
   const handleSubmit = e => {
     e.preventDefault ();
 
-    validateForm ();
-
-    if (!validationMessages) {
-      dispatch (createNewPlateGratingsTolerances (data));
-    }
+    dispatch (createNewPlateGratingsTolerances (data));
 
     setData ({
       plateGridName: '',
@@ -132,13 +139,14 @@ const AddNewPlateGratingsTolerancesScreen = () => {
           btnLabel="Добави"
         />
         <br />
-        <div style={{color: 'red', fontWeight: 'bold'}}>
+        {showValidationMessages ()}
+        {/* <div style={{color: 'red', fontWeight: 'bold'}}>
           {validationMessages.length > 0 &&
             <span>Моля попълнете формата както следва:</span>}
           <ul>
             {validationMessages.map (vm => <li key={vm}>{vm}</li>)}
           </ul>
-        </div>
+        </div> */}
       </FormContainer>
     </React.Fragment>
   );

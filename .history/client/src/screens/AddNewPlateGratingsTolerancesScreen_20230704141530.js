@@ -22,6 +22,7 @@ const AddNewPlateGratingsTolerancesScreen = () => {
     nominalMax2: 0,
   });
   const [validationMessages, setValidationMessages] = useState ([]);
+  const [isValid, setIsValid] = useState (false);
 
   const dispatch = useDispatch ();
 
@@ -88,11 +89,12 @@ const AddNewPlateGratingsTolerancesScreen = () => {
   const handleSubmit = e => {
     e.preventDefault ();
 
-    validateForm ();
+    const isValid = validateForm ();
+    setIsValid (isValid);
 
-    if (!validationMessages) {
-      dispatch (createNewPlateGratingsTolerances (data));
-    }
+    console.log (isValid);
+
+    dispatch (createNewPlateGratingsTolerances (data));
 
     setData ({
       plateGridName: '',
