@@ -5,7 +5,6 @@ import OperatorsForm from '../components/OperatorsForm';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import FormContainer from '../components/FormContainer';
-import {validateOperatorsForm} from '../utils/formValidation';
 import {createOperator} from '../redux/actions/operatorActions';
 import {listZvena} from '../redux/actions/zvenaActions';
 
@@ -30,11 +29,37 @@ const AddNewOperatorScreen = () => {
     [dispatch]
   );
 
+  const validateForm = inputData => {
+    let errors = {};
+
+    if (!inputData.operatorName) {
+      errors.operatorName = 'Името на оператор е задължително!';
+    }
+    if (!inputData.operatorCardNumber || inputData.operatorCardNumber <= 0) {
+      errors.operatorCardNumber =
+        'Полето номер на карта е задължително и трябва да бъде цяло положително число!';
+    }
+    if (!inputData.zvenoName) {
+      errors.zvenoName = 'Звеното трябва да бъде посочено!';
+    }
+
+    return errors;
+  };
+
   const createOperatorHandler = e => {
     e.preventDefault ();
 
-    setErrors (validateOperatorsForm (data));
+    setErrors (validateForm (data));
     setSubmitting (true);
+
+    dispatch (createOperator (data));
+
+    setData ({
+      operatorName: '',
+      operatorCardNumber: 0,
+      zvenoName: '',
+      zvenoId: 0,
+    });
   };
 
   const finishSubmit = () => {

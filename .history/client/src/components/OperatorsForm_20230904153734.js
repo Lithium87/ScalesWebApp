@@ -60,9 +60,6 @@ const OperatorsForm = ({
               </option>
             ))}
         </Form.Control>
-        {errors.zvenoName
-          ? <p style={{color: 'red'}}>Звеното трябва да бъде посочено!</p>
-          : null}
       </Form.Group>
 
       <Form.Group>

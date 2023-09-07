@@ -1,26 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import PlateGratingsTolerancesForm
-  from '../components/PlateGratingsTolerancesForm';
+import LeadPasteTolerancesForm from '../components/LeadPasteTolerancesForm';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import FormContainer from '../components/FormContainer';
-import {validatePlateGratingsTolerancesForm} from '../utils/formValidation';
+import {validateLeadPasteTolerancesForm} from '../utils/formValidation';
 import {
-  listPlateGratingsTolerancesById,
-  updatePlateGratingsTolerancesById,
+  listLeadPasteTolerancesById,
+  updateLeadPasteTolerancesById,
 } from '../redux/actions/tolerancesActions';
 
-const EditPlateGratingsTolerancesScreen = () => {
+const EditLeadPasteTolerancesScreen = () => {
   const [data, setData] = useState ({
-    plateGridName: '',
+    leadPasteName: '',
     cardNumber: 0,
-    nominal: 0,
-    nominalMin1: 0,
-    nominalMin2: 0,
-    nominalMax1: 0,
-    nominalMax2: 0,
+    nominalDensity: 0.0,
+    nominalDensityMin1: 0.0,
+    nominalDensityMin2: 0.0,
+    nominalDensityMax1: 0.0,
+    nominalDensityMax2: 0.0,
   });
   const [errors, setErrors] = useState ({});
   const [submitting, setSubmitting] = useState (false);
@@ -29,26 +28,26 @@ const EditPlateGratingsTolerancesScreen = () => {
 
   const {id} = useParams ();
 
-  const plateGratingsTolerancesById = useSelector (
-    state => state.plateGratingsTolerancesById
+  const leadPasteTolerancesById = useSelector (
+    state => state.leadPasteTolerancesById
   );
   const {
     loading,
     error,
-    plateGratingsTolerancesById: tolerancesById,
-  } = plateGratingsTolerancesById;
+    leadPasteTolerancesById: tolerancesById,
+  } = leadPasteTolerancesById;
 
-  const plateGratingsTolerancesByIdUpdate = useSelector (
-    state => state.plateGratingsTolerancesByIdUpdate
+  const leadPasteTolerancesByIdUpdate = useSelector (
+    state => state.leadPasteTolerancesByIdUpdate
   );
   const {
     loading: loadingUpdate,
     error: errorUpdate,
-  } = plateGratingsTolerancesByIdUpdate;
+  } = leadPasteTolerancesByIdUpdate;
 
   useEffect (
     () => {
-      dispatch (listPlateGratingsTolerancesById (id));
+      dispatch (listLeadPasteTolerancesById (id));
     },
     [dispatch, id]
   );
@@ -58,13 +57,13 @@ const EditPlateGratingsTolerancesScreen = () => {
       if (tolerancesById) {
         setData ({
           id: tolerancesById.id,
-          plateGridName: tolerancesById.plateGridName,
+          leadPasteName: tolerancesById.leadPasteName,
           cardNumber: tolerancesById.cardNumber,
-          nominal: tolerancesById.nominal,
-          nominalMin1: tolerancesById.nominalMin1,
-          nominalMin2: tolerancesById.nominalMin2,
-          nominalMax1: tolerancesById.nominalMax1,
-          nominalMax2: tolerancesById.nominalMax2,
+          nominalDensity: tolerancesById.nominalDensity,
+          nominalDensityMin1: tolerancesById.nominalDensityMin1,
+          nominalDensityMin2: tolerancesById.nominalDensityMin2,
+          nominalDensityMax1: tolerancesById.nominalDensityMax1,
+          nominalDensityMax2: tolerancesById.nominalDensityMax2,
         });
       }
     },
@@ -82,21 +81,21 @@ const EditPlateGratingsTolerancesScreen = () => {
   const submitHandler = e => {
     e.preventDefault ();
 
-    setErrors (validatePlateGratingsTolerancesForm (data));
+    setErrors (validateLeadPasteTolerancesForm (data));
     setSubmitting (true);
   };
 
   const finishSubmit = () => {
-    dispatch (updatePlateGratingsTolerancesById (data));
+    dispatch (updateLeadPasteTolerancesById (data));
 
     setData ({
-      plateGridName: '',
+      leadPasteName: '',
       cardNumber: 0,
-      nominal: 0,
-      nominalMin1: 0,
-      nominalMin2: 0,
-      nominalMax1: 0,
-      nominalMax2: 0,
+      nominalDensity: 0.0,
+      nominalDensityMin1: 0.0,
+      nominalDensityMin2: 0.0,
+      nominalDensityMax1: 0.0,
+      nominalDensityMax2: 0.0,
     });
   };
 
@@ -112,31 +111,29 @@ const EditPlateGratingsTolerancesScreen = () => {
   return (
     <React.Fragment>
       <Link
-        to="/settings/plate_gratings_tolerances"
+        to="/settings/lead_paste_tolerances"
         className="shadow rounded btn btn-secondary btn-sm m-3"
       >
         Обратно към таблицата с допуски
       </Link>
 
       <FormContainer>
-        <h3>Редактиране на допуски плочи / решетки</h3>
+        <h3>Редактиране на допуски на оловна паста</h3>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading
           ? <Loader />
           : error
               ? <Message variant="danger">{error}</Message>
-              : <PlateGratingsTolerancesForm
+              : <LeadPasteTolerancesForm
                   data={data}
                   onSubmit={submitHandler}
                   onChange={handleChange}
                   btnLabel="Редактирай"
-                  errors={errors}
                 />}
       </FormContainer>
-
     </React.Fragment>
   );
 };
 
-export default EditPlateGratingsTolerancesScreen;
+export default EditLeadPasteTolerancesScreen;

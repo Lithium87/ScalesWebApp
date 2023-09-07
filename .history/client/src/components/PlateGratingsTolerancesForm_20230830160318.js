@@ -11,7 +11,7 @@ const PlateGratingsTolerancesForm = ({
   return (
     <Form onSubmit={onSubmit}>
       <Form.Group controlId="plateGridName">
-        <Form.Label>Име на плоча / решетка</Form.Label> 
+        <Form.Label>Име на плоча / решетка</Form.Label>
         <Form.Control
           name="plateGridName"
           type="text"

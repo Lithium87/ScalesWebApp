@@ -59,10 +59,8 @@ const OperatorsForm = ({
                 {zveno.zvenoName}
               </option>
             ))}
+          {errors.zvenoName ? <p>Звеното трябва да бъде посочено!</p> : null}
         </Form.Control>
-        {errors.zvenoName
-          ? <p style={{color: 'red'}}>Звеното трябва да бъде посочено!</p>
-          : null}
       </Form.Group>
 
       <Form.Group>
