@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Table} from 'react-bootstrap';
@@ -9,6 +9,9 @@ import {
 } from '../../../redux/actions/tolerancesActions';
 
 const LeadPasteTolerancesScreen = () => {
+  const [selectedRows, setSelectedRows] = useState ([]);
+  const [data, setData] = useState ([]);
+
   const dispatch = useDispatch ();
 
   const allLeadPasteTolerances = useSelector (
@@ -26,6 +29,23 @@ const LeadPasteTolerancesScreen = () => {
     },
     [dispatch]
   );
+
+  useEffect (
+    () => {
+      if (tolerances) {
+        setData (tolerances);
+      }
+    },
+    [tolerances]
+  );
+
+  const handleRowSelection = () => {
+    console.log ('Clicked!');
+  };
+
+  const loadSelected = () => {};
+
+  const loadAll = () => {};
 
   return (
     <React.Fragment>
@@ -78,18 +98,39 @@ const LeadPasteTolerancesScreen = () => {
                             </Button>
                           </LinkContainer>
                         </td>
+                        <td>
+                          <input
+                            type="checkbox"
+                            checked={selectedRows.includes (tolerance.id)}
+                            onChange={() => handleRowSelection ()}
+                          />
+                        </td>
                       </tr>
                     ))}
                 </tbody>
               </Table>}
 
       <LinkContainer
-        to={'../settings/lead_paste_tolerances/undefined/addNewTolerances'}
+        to={`../settings/lead_paste_tolerances/undefined/addNewTolerances`}
       >
-        <Button className="shadow rounded btn btn-secondary btn-sm m-3">
+        <Button className="shadow rounded btn btn-secondary btn-sm m3">
           Добави нови допуски
         </Button>
       </LinkContainer>
+
+      <Button
+        className="shadow rounded btn btn-secondary btn-sm m-3"
+        onClick={loadSelected}
+      >
+        Зареди избраните допуски
+      </Button>
+
+      <Button
+        className="shadow rounded btn btn-secondary btn-sm m-3"
+        onClick={loadAll}
+      >
+        Зареди всички
+      </Button>
     </React.Fragment>
   );
 };

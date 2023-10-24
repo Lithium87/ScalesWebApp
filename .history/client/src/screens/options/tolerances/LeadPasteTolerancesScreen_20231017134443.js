@@ -39,113 +39,13 @@ const LeadPasteTolerancesScreen = () => {
     [tolerances]
   );
 
-  const handleRowSelection = (
-    rowId,
-    leadPasteName,
-    cardNumber,
-    nominalDensity,
-    nominalDensityMin1,
-    nominalDensityMin2,
-    nominalDensityMax1,
-    nominalDensityMax2
-  ) => {
-    if (selectedRows.includes (rowId)) {
-      setSelectedRows (selectedRows.filter (id => id !== rowId));
-    } else {
-      setSelectedRows ([...selectedRows, rowId]);
-    }
-
-    const newData = data.map (row => {
-      if (row.id === rowId) {
-        return {
-          ...row,
-          leadPasteName,
-          cardNumber,
-          nominalDensity,
-          nominalDensityMin1,
-          nominalDensityMin2,
-          nominalDensityMax1,
-          nominalDensityMax2,
-        };
-      }
-      return row;
-    });
-    setData (newData);
+  const handleRowSelection = id => {
+    console.log ('Clicked!', id);
   };
 
-  const loadSelected = () => {
-    const newData = data.filter (row => selectedRows.includes (row.id));
-    setData (newData);
-    setSelectedRows ([]);
-  };
+  const loadSelected = () => {};
 
-  const loadAll = () => {
-    setData (tolerances);
-
-    <Table
-      striped
-      bordered
-      hover
-      responsive
-      className="table-sm"
-      id="lpTolerances"
-      style={{background: 'white'}}
-    >
-      <thead>
-        <tr>
-          <th>Допуск №</th>
-          <th>Име на оловна паста</th>
-          <th>Карта №</th>
-          <th>Номинална плътност</th>
-          <th>Номинална плътност (-)</th>
-          <th>Номинална плътност (--)</th>
-          <th>Номинална плътност (+)</th>
-          <th>Номинална плътност (++)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data &&
-          data.map ((tolerance, i) => (
-            <tr key={tolerance.id}>
-              <td>{i + 1}</td>
-              <td>{tolerance.leadPasteName}</td>
-              <td>{tolerance.cardNumber}</td>
-              <td>{tolerance.nominalDensity}</td>
-              <td>{tolerance.nominalDensityMin1}</td>
-              <td>{tolerance.nominalDensityMin2}</td>
-              <td>{tolerance.nominalDensityMax1}</td>
-              <td>{tolerance.nominalDensityMax2}</td>
-              <td>
-                <LinkContainer
-                  to={`../settings/lead_paste_tolerances/${tolerance.id}`}
-                >
-                  <Button className="shadow rounded btn btn-secondary btn-sm m-3">
-                    Редактирай
-                  </Button>
-                </LinkContainer>
-              </td>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={selectedRows.includes (tolerance.id)}
-                  onChange={() =>
-                    handleRowSelection (
-                      tolerance.id,
-                      tolerance.leadPasteName,
-                      tolerance.cardNumber,
-                      tolerance.nominalDensity,
-                      tolerance.nominalDensityMin1,
-                      tolerance.nominalDensityMin2,
-                      tolerance.nominalDensityMax1,
-                      tolerance.nominalDensityMax2
-                    )}
-                />
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </Table>;
-  };
+  const loadAll = () => {};
 
   return (
     <React.Fragment>
@@ -178,8 +78,8 @@ const LeadPasteTolerancesScreen = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data &&
-                    data.map ((tolerance, i) => (
+                  {tolerances &&
+                    tolerances.map ((tolerance, i) => (
                       <tr key={tolerance.id}>
                         <td>{i + 1}</td>
                         <td>{tolerance.leadPasteName}</td>
@@ -202,17 +102,7 @@ const LeadPasteTolerancesScreen = () => {
                           <input
                             type="checkbox"
                             checked={selectedRows.includes (tolerance.id)}
-                            onChange={() =>
-                              handleRowSelection (
-                                tolerance.id,
-                                tolerance.leadPasteName,
-                                tolerance.cardNumber,
-                                tolerance.nominalDensity,
-                                tolerance.nominalDensityMin1,
-                                tolerance.nominalDensityMin2,
-                                tolerance.nominalDensityMax1,
-                                tolerance.nominalDensityMax2
-                              )}
+                            onChange={() => handleRowSelection (tolerance.id)}
                           />
                         </td>
                       </tr>

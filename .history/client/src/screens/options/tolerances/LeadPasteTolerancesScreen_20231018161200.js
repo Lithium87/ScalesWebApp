@@ -5,27 +5,27 @@ import {Button, Table} from 'react-bootstrap';
 import Loader from '../../../components/Loader';
 import Message from '../../../components/Message';
 import {
-  getAllPlateGratingsTolerances,
+  getAllLeadPasteTolerances,
 } from '../../../redux/actions/tolerancesActions';
 
-const PlateGratingsTolerancesScreen = () => {
+const LeadPasteTolerancesScreen = () => {
   const [selectedRows, setSelectedRows] = useState ([]);
   const [data, setData] = useState ([]);
 
   const dispatch = useDispatch ();
 
-  const allPlateGratingsTolerances = useSelector (
-    state => state.allPlateGratingsTolerances
+  const allLeadPasteTolerances = useSelector (
+    state => state.allLeadPasteTolerances
   );
   const {
     loading,
     error,
-    allPlateGratingsTolerances: tolerances,
-  } = allPlateGratingsTolerances;
+    allLeadPasteTolerances: tolerances,
+  } = allLeadPasteTolerances;
 
   useEffect (
     () => {
-      dispatch (getAllPlateGratingsTolerances ());
+      dispatch (getAllLeadPasteTolerances ());
     },
     [dispatch]
   );
@@ -41,30 +41,31 @@ const PlateGratingsTolerancesScreen = () => {
 
   const handleRowSelection = (
     rowId,
-    plateGridName,
+    leadPasteName,
     cardNumber,
-    nominal,
-    nominalMin1,
-    nominalMin2,
-    nominalMax1,
-    nominalMax2
+    nominalDensity,
+    nominalDensityMin1,
+    nominalDensityMin2,
+    nominalDensityMax1,
+    nominalDensityMax2
   ) => {
     if (selectedRows.includes (rowId)) {
       setSelectedRows (selectedRows.filter (id => id !== rowId));
     } else {
       setSelectedRows ([...selectedRows, rowId]);
     }
+
     const newData = data.map (row => {
       if (row.id === rowId) {
         return {
           ...row,
-          plateGridName,
+          leadPasteName,
           cardNumber,
-          nominal,
-          nominalMin1,
-          nominalMin2,
-          nominalMax1,
-          nominalMax2,
+          nominalDensity,
+          nominalDensityMin1,
+          nominalDensityMin2,
+          nominalDensityMax1,
+          nominalDensityMax2,
         };
       }
       return row;
@@ -75,7 +76,7 @@ const PlateGratingsTolerancesScreen = () => {
   const loadSelected = () => {
     const newData = data.filter (row => selectedRows.includes (row.id));
     setData (newData);
-    setSelectedRows ([]);
+    console.log (data);
   };
 
   const loadAll = () => {
@@ -87,19 +88,19 @@ const PlateGratingsTolerancesScreen = () => {
       hover
       responsive
       className="table-sm"
-      id="pgTolerances"
+      id="lpTolerances"
       style={{background: 'white'}}
     >
       <thead>
         <tr>
           <th>Допуск №</th>
-          <th>Име на плоча / решетка</th>
+          <th>Име на оловна паста</th>
           <th>Карта №</th>
-          <th>Номинал</th>
-          <th>Номинал (-)</th>
-          <th>Номинал (--)</th>
-          <th>Номинал (+)</th>
-          <th>Номинал (++)</th>
+          <th>Номинална плътност</th>
+          <th>Номинална плътност (-)</th>
+          <th>Номинална плътност (--)</th>
+          <th>Номинална плътност (+)</th>
+          <th>Номинална плътност (++)</th>
         </tr>
       </thead>
       <tbody>
@@ -107,16 +108,16 @@ const PlateGratingsTolerancesScreen = () => {
           data.map ((tolerance, i) => (
             <tr key={tolerance.id}>
               <td>{i + 1}</td>
-              <td>{tolerance.plateGridName}</td>
+              <td>{tolerance.leadPasteName}</td>
               <td>{tolerance.cardNumber}</td>
-              <td>{tolerance.nominal}</td>
-              <td>{tolerance.nominalMin1}</td>
-              <td>{tolerance.nominalMin2}</td>
-              <td>{tolerance.nominalMax1}</td>
-              <td>{tolerance.nominalMax2}</td>
+              <td>{tolerance.nominalDensity}</td>
+              <td>{tolerance.nominalDensityMin1}</td>
+              <td>{tolerance.nominalDensityMin2}</td>
+              <td>{tolerance.nominalDensityMax1}</td>
+              <td>{tolerance.nominalDensityMax2}</td>
               <td>
                 <LinkContainer
-                  to={`../settings/plate_gratings_tolerances/${tolerance.id}`}
+                  to={`../settings/lead_paste_tolerances/${tolerance.id}`}
                 >
                   <Button className="shadow rounded btn btn-secondary btn-sm m-3">
                     Редактирай
@@ -130,13 +131,13 @@ const PlateGratingsTolerancesScreen = () => {
                   onChange={() =>
                     handleRowSelection (
                       tolerance.id,
-                      tolerance.plateGridName,
+                      tolerance.leadPasteName,
                       tolerance.cardNumber,
-                      tolerance.nominal,
-                      tolerance.nominalMin1,
-                      tolerance.nominalMin2,
-                      tolerance.nominalMax1,
-                      tolerance.nominalMax2
+                      tolerance.nominalDensity,
+                      tolerance.nominalDensityMin1,
+                      tolerance.nominalDensityMin2,
+                      tolerance.nominalDensityMax1,
+                      tolerance.nominalDensityMax2
                     )}
                 />
               </td>
@@ -148,7 +149,7 @@ const PlateGratingsTolerancesScreen = () => {
 
   return (
     <React.Fragment>
-      <h3>Допуски на плочи / решетки</h3>
+      <h3>Допуски оловна паста</h3>
 
       {loading
         ? <Loader />
@@ -160,38 +161,39 @@ const PlateGratingsTolerancesScreen = () => {
                 hover
                 responsive
                 className="table-sm"
-                id="pgTolerances"
+                id="lpTolerances"
                 style={{background: 'white'}}
               >
                 <thead>
                   <tr>
                     <th>Допуск №</th>
-                    <th>Име на плоча / решетка</th>
+                    <th>Име на оловна паста</th>
                     <th>Карта №</th>
-                    <th>Номинал</th>
-                    <th>Номинал (-)</th>
-                    <th>Номинал (--)</th>
-                    <th>Номинал (+)</th>
-                    <th>Номинал (++)</th>
+                    <th>Номинална плътност</th>
+                    <th>Номинална плътност (-)</th>
+                    <th>Номинална плътност (--)</th>
+                    <th>Номинална плътност (+)</th>
+                    <th>Номинална плътност (++)</th>
+                    <th />
                   </tr>
                 </thead>
                 <tbody>
-                  {data &&
-                    data.map ((tolerance, i) => (
+                  {tolerances &&
+                    tolerances.map ((tolerance, i) => (
                       <tr key={tolerance.id}>
                         <td>{i + 1}</td>
-                        <td>{tolerance.plateGridName}</td>
+                        <td>{tolerance.leadPasteName}</td>
                         <td>{tolerance.cardNumber}</td>
-                        <td>{tolerance.nominal}</td>
-                        <td>{tolerance.nominalMin1}</td>
-                        <td>{tolerance.nominalMin2}</td>
-                        <td>{tolerance.nominalMax1}</td>
-                        <td>{tolerance.nominalMax2}</td>
+                        <td>{tolerance.nominalDensity}</td>
+                        <td>{tolerance.nominalDensityMin1}</td>
+                        <td>{tolerance.nominalDensityMin2}</td>
+                        <td>{tolerance.nominalDensityMax1}</td>
+                        <td>{tolerance.nominalDensityMax2}</td>
                         <td>
                           <LinkContainer
-                            to={`../settings/plate_gratings_tolerances/${tolerance.id}`}
+                            to={`../settings/lead_paste_tolerances/${tolerance.id}`}
                           >
-                            <Button className="shadow rounded btn btn-secondary btn-sm m-3">
+                            <Button className="shadow rounded btn btn-secondary btn-sm m3">
                               Редактирай
                             </Button>
                           </LinkContainer>
@@ -203,13 +205,13 @@ const PlateGratingsTolerancesScreen = () => {
                             onChange={() =>
                               handleRowSelection (
                                 tolerance.id,
-                                tolerance.plateGridName,
+                                tolerance.leadPasteName,
                                 tolerance.cardNumber,
-                                tolerance.nominal,
-                                tolerance.nominalMin1,
-                                tolerance.nominalMin2,
-                                tolerance.nominalMax1,
-                                tolerance.nominalMax2
+                                tolerance.nominalDensity,
+                                tolerance.nominalDensityMin1,
+                                tolerance.nominalDensityMin2,
+                                tolerance.nominalDensityMax1,
+                                tolerance.nominalDensityMax2
                               )}
                           />
                         </td>
@@ -219,9 +221,9 @@ const PlateGratingsTolerancesScreen = () => {
               </Table>}
 
       <LinkContainer
-        to={`../settings/plate_gratings_tolerances/undefined/addNewTolerances`}
+        to={`../settings/lead_paste_tolerances/undefined/addNewTolerances`}
       >
-        <Button className="shadow rounded btn btn-secondary btn-sm m-3">
+        <Button className="shadow rounded btn btn-secondary btn-sm m3">
           Добави нови допуски
         </Button>
       </LinkContainer>
@@ -239,9 +241,8 @@ const PlateGratingsTolerancesScreen = () => {
       >
         Зареди всички
       </Button>
-
     </React.Fragment>
   );
 };
 
-export default PlateGratingsTolerancesScreen;
+export default LeadPasteTolerancesScreen;

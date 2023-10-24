@@ -75,6 +75,7 @@ const PlateGratingsTolerancesScreen = () => {
   const loadSelected = () => {
     const newData = data.filter (row => selectedRows.includes (row.id));
     setData (newData);
+    console.log (data);
     setSelectedRows ([]);
   };
 

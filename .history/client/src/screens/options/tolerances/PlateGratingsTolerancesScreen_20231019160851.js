@@ -70,6 +70,7 @@ const PlateGratingsTolerancesScreen = () => {
       return row;
     });
     setData (newData);
+    console.log (data);
   };
 
   const loadSelected = () => {
